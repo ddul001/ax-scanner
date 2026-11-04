@@ -1,0 +1,36 @@
+{
+ "type": "importer",
+ "confidence": 0.97,
+ "facts": {
+  "is_automotive_related": true,
+  "is_financial_institution": false,
+  "is_manufacturer_or_official_importer": true,
+  "hosts_third_party_listings": false,
+  "owns_vehicle_stock": false,
+  "sells_auto_parts_online": false
+ },
+ "model_type": "importer",
+ "secondary_types": [],
+ "brands": [
+  "Dacia"
+ ],
+ "locations": null,
+ "evidence": [
+  {
+   "signal": "title",
+   "value": "Official site Dacia Espana presenting new car range and online purchase"
+  },
+  {
+   "signal": "has_configurator",
+   "value": "true with configuralo CTAs for Spring, Sandero, Duster, Bigster"
+  },
+  {
+   "signal": "has_dealer_locator",
+   "value": "true with concesionarios navigation and dealer search"
+  },
+  {
+   "signal": "url_patterns",
+   "value": "140 model URLs and 44 stock URLs with desde prices e.g. Sandero desde 13.502 EUR"
+  }
+ ]
+}

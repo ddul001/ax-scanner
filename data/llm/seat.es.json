@@ -1,0 +1,36 @@
+{
+ "type": "importer",
+ "confidence": 0.96,
+ "facts": {
+  "is_automotive_related": true,
+  "is_financial_institution": false,
+  "is_manufacturer_or_official_importer": true,
+  "hosts_third_party_listings": false,
+  "owns_vehicle_stock": false,
+  "sells_auto_parts_online": false
+ },
+ "model_type": "importer",
+ "secondary_types": [],
+ "brands": [
+  "SEAT"
+ ],
+ "locations": null,
+ "evidence": [
+  {
+   "signal": "title",
+   "value": "Official SEAT Spain page for cars, offers and configurator"
+  },
+  {
+   "signal": "headings",
+   "value": "Model range includes Nuevo Ibiza, Nuevo Arona, Leon, Ateca"
+  },
+  {
+   "signal": "has_configurator",
+   "value": "Configurator present with test-drive and quote requests"
+  },
+  {
+   "signal": "has_dealer_locator",
+   "value": "Dealer locator present with dealer network URLs"
+  }
+ ]
+}

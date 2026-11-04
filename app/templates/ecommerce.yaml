@@ -1,0 +1,35 @@
+type: ecommerce
+depth: basic
+# E-commerce (docs/checks/ecommerce.md). Cele 17 checkuri din specificatia MVP.
+# act.add_to_cart si act.guest_checkout sunt DETECTATE din pagini (scannerul nu adauga in cos, nu se logheaza, nu plaseaza comenzi).
+# trust.policies_text citeste paginile de politici cu Muse Spark; citatele sunt verificate pe pagina.
+weights: {discovery: 15, identity: 10, data: 25, actions: 20, trust: 10, agent_ux: 15, protocol: 5}
+pages_max: 15
+checks:
+  # Discovery
+  - {id: disc.robots_ai,          layer: discovery, method: D,   severity: HIGH,     pass: "boți AI permiși pe categorii + produse"}
+  - {id: disc.waf_ua,             layer: discovery, method: D,   severity: CRITICAL, pass: "UA agent = UA browser"}
+  - {id: disc.sitemap,            layer: discovery, method: D,   severity: MAJOR,    pass: "produse în sitemap, lastmod < 7 zile"}
+  - {id: disc.llms_txt,           layer: discovery, method: D,   severity: MAJOR,    pass: "200, markdown, link-uri categorii/politici/contact"}
+  - {id: disc.no_js,              layer: discovery, method: D,   severity: HIGH,     pass: "preț + stoc în HTML brut"}
+  # Identity
+  - {id: id.schema_org,           layer: identity,  method: D,   severity: HIGH,     pass: "Organization/OnlineStore: name, logo, url, contactPoint"}
+  # Data
+  - {id: prod.urls,               layer: data,      method: D,   severity: CRITICAL, pass: "URL unic crawlabil"}
+  - {id: prod.schema_product,     layer: data,      method: D,   severity: HIGH,     pass: "Product: name, image, brand, sku/gtin ≥ 80%"}
+  - {id: prod.schema_offer,       layer: data,      method: D,   severity: HIGH,     pass: "Offer: price, priceCurrency, availability"}
+  - {id: prod.price_readable,     layer: data,      method: D,   severity: CRITICAL, pass: "preț (+ stoc) în text, nu doar JS/imagine"}
+  - {id: prod.price_consistency,  layer: data,      method: D,   severity: HIGH,     pass: "JSON-LD = preț vizibil"}
+  # Actions
+  - {id: act.add_to_cart,         layer: actions,   method: D,   severity: HIGH,     pass: "control de adăugare în coș pe produs, fără login (detectat, nu executat)"}
+  - {id: act.guest_checkout,      layer: actions,   method: D,   severity: HIGH,     pass: "checkout fără cont/CAPTCHA (detectat, nu executat)"}
+  - {id: act.webmcp,            layer: actions,   method: P,   severity: INFO,     pass: "detecție statică: unelte WebMCP declarate (toolname / registerTool); informativ, fără scor"}
+  # Trust
+  - {id: trust.https,             layer: trust,     method: D,   severity: HIGH,     pass: "certificat valid + redirect"}
+  - {id: trust.policies_text,     layer: trust,     method: L,   severity: MAJOR,    pass: "livrare/retur/garanție cu termene și costuri"}
+  # Agent UX
+  - {id: ux.j_find,               layer: agent_ux,  method: J,   severity: CRITICAL, pass: "găsește un produs sub buget, cu pagină proprie: nume, preț, disponibilitate"}
+  # Protocol
+  - {id: proto.mcp_public,        layer: protocol,  method: P,   severity: MAJOR,    pass: "detectare MCP/UCP/ACP declarat (prezent da/nu, fără validare)"}
+deferred_v2: [disc.perf, disc.wellknown, id.company, id.same_as, id.lang, prod.fields, prod.policies_schema, prod.search_urls, prod.rating, prod.feed, act.forms_semantic, act.contact, trust.cookie_wall, trust.injection, trust.gdpr, ux.j_total, ux.j_policy, ux.j_act, ux.blockers, ux.agent_vs_human, proto.ucp, proto.checkout_protocol]
+not_applicable: [proto.aap]

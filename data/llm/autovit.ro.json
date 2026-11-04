@@ -1,0 +1,34 @@
+{
+ "type": "marketplace",
+ "confidence": 0.97,
+ "facts": {
+  "is_automotive_related": true,
+  "is_financial_institution": false,
+  "is_manufacturer_or_official_importer": false,
+  "hosts_third_party_listings": true,
+  "owns_vehicle_stock": false,
+  "sells_auto_parts_online": false
+ },
+ "model_type": "marketplace",
+ "secondary_types": [],
+ "brands": [],
+ "locations": null,
+ "evidence": [
+  {
+   "signal": "title",
+   "value": "AUTOVIT - auto ads, new and second-hand cars for sale, largest auto ads site in Romania"
+  },
+  {
+   "signal": "navigation",
+   "value": "Vehicle categories Autoturisme, Camioane, Moto plus Vinde acum Sell now and login register"
+  },
+  {
+   "signal": "make_count",
+   "value": "31 distinct makes mentioned, typical of multi-seller aggregator"
+  },
+  {
+   "signal": "url_patterns",
+   "value": "1033 stock URLs and 10 listings URLs with model paths like /autoturisme/bmw/seria-3"
+  }
+ ]
+}

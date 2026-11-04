@@ -1,0 +1,18 @@
+{
+  "protocol_version": "0.3",
+  "organization": {
+    "name": "Velora România",
+    "domain": "velora.ro"
+  },
+  "web": {},
+  "extensions": {
+    "autoagentprotocol.org/aap": {
+      "version": "1",
+      "agent_card": "https://velora.ro/.well-known/agent-card.json",
+      "documentation": "https://autoagentprotocol.org/",
+      "aap_version": "3.0.0",
+      "mcp": "https://velora.ro/mcp",
+      "llms_txt": "https://velora.ro/llms.txt"
+    }
+  }
+}

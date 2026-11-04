@@ -1,0 +1,51 @@
+domain,expected_type,category,subtype,country,label_confidence,heur_type,heur_conf,llm_type,llm_conf,llm_brands,llm_error,predicted,confidence,needs_confirmation,correct,secondary,scores,lang,sitemap_urls,error
+dacia.ro,importer,oem,,RO,sure,importer,0.72,importer,0.96,Dacia,,importer,1.0,False,True,,"{""dealer"": 4.0, ""importer"": 7.0, ""ecommerce"": 2.0, ""marketplace"": 1.0, ""finance"": 0.0}",ro,756,
+renault.ro,importer,oem,,RO,sure,importer,0.5,importer,0.96,Renault,,importer,0.99,False,True,,"{""dealer"": 4.0, ""importer"": 5.0, ""ecommerce"": 2.0, ""marketplace"": 0.0, ""finance"": 0.0}",ro,1196,
+toyota.ro,importer,oem,,RO,sure,importer,0.94,importer,0.97,Toyota,,importer,1.0,False,True,,"{""dealer"": 4.0, ""importer"": 11.0, ""ecommerce"": 0.0, ""marketplace"": 2.0, ""finance"": 3.0}",ro,685,
+volkswagen.ro,importer,oem,,RO,sure,dealer,0.11,importer,0.95,Volkswagen,,importer,0.92,False,True,,"{""dealer"": 2.0, ""importer"": 2.0, ""ecommerce"": 2.0, ""marketplace"": 0.0, ""finance"": 0.0}",ro,849,
+ford.ro,importer,oem,,RO,sure,importer,0.4,importer,0.9,Ford,,importer,0.92,False,True,,"{""dealer"": 2.0, ""importer"": 4.0, ""ecommerce"": 2.0, ""marketplace"": 0.0, ""finance"": 0.0}",en,669,
+seat.es,importer,oem,,ES,sure,importer,0.86,importer,0.96,SEAT,,importer,1.0,False,True,,"{""dealer"": 4.5, ""importer"": 9.0, ""ecommerce"": 0.0, ""marketplace"": 2.0, ""finance"": 0.0}",es,1068,
+toyota.es,importer,oem,,ES,sure,importer,0.86,importer,0.96,Toyota,,importer,1.0,False,True,,"{""dealer"": 4.0, ""importer"": 9.0, ""ecommerce"": 0.0, ""marketplace"": 1.0, ""finance"": 3.0}",es,1692,
+renault.es,importer,oem,,ES,sure,importer,0.87,importer,0.96,Renault,,importer,1.0,False,True,,"{""dealer"": 4.0, ""importer"": 10.0, ""ecommerce"": 0.0, ""marketplace"": 1.0, ""finance"": 5.0}",es,5000,
+dacia.es,importer,oem,,ES,sure,importer,0.93,importer,0.97,Dacia,,importer,1.0,False,True,,"{""dealer"": 4.0, ""importer"": 10.0, ""ecommerce"": 0.0, ""marketplace"": 1.0, ""finance"": 0.0}",es,5000,
+autoklass.ro,dealer,dealer,,RO,guess,finance,0.26,dealer,0.95,Mercedes-Benz|Audi|Volkswagen|XPENG|Honda,,dealer,0.89,False,True,,"{""dealer"": 1.0, ""importer"": 1.0, ""ecommerce"": 1.0, ""marketplace"": 0.0, ""finance"": 3.0}",ro,2216,
+autodelrulate.ro,dealer,used-dealer,,RO,guess,marketplace,0.95,dealer,0.85,Hyundai|Mitsubishi|Geely,,dealer,0.85,False,True,marketplace,"{""dealer"": 4.5, ""importer"": 0.0, ""ecommerce"": 0.0, ""marketplace"": 11.0, ""finance"": 0.0}",ro,668,
+tiriacauto.ro,dealer,dealer,,RO,guess,marketplace,0.54,dealer,0.95,Ford|Mercedes-Benz|Hyundai|BYD|Mitsubishi|KGM,,dealer,0.81,False,True,,"{""dealer"": 4.0, ""importer"": 0.0, ""ecommerce"": 0.0, ""marketplace"": 5.0, ""finance"": 0.0}",ro,5000,
+ocasionplus.com,dealer,used-retailer,,ES,guess,importer,0.42,dealer,0.97,Mitsubishi|Mercedes|Audi|Opel|BMW|Peugeot|Citroën|Seat|Toyota,,dealer,0.87,False,True,,"{""dealer"": 2.0, ""importer"": 5.0, ""ecommerce"": 0.0, ""marketplace"": 5.0, ""finance"": 0.0}",es,5,
+flexicar.es,dealer,used-retailer,,ES,guess,marketplace,0.45,dealer,0.95,Dacia|Toyota|Audi|Nissan,,dealer,0.84,False,True,,"{""dealer"": 1.5, ""importer"": 1.0, ""ecommerce"": 0.0, ""marketplace"": 4.0, ""finance"": 0.0}",es,49,
+clicars.com,dealer,used-retailer,,ES,guess,marketplace,0.88,dealer,0.95,Volkswagen|Toyota|Peugeot|Renault|BMW|Citroen|SEAT|Hyundai|Audi|Opel|Ford|Mercedes|Kia|Nissan|Volvo|Mazda|Skoda|Dacia,,dealer,0.73,False,True,,"{""dealer"": 4.5, ""importer"": 0.0, ""ecommerce"": 0.0, ""marketplace"": 9.0, ""finance"": 0.0}",es,62,
+autohero.com,dealer,used-retailer,,ES,guess,marketplace,0.16,dealer,0.95,Volkswagen|Mercedes-Benz|Audi|BMW|Skoda|Ford|Opel|Hyundai|Toyota|Seat,,dealer,0.91,False,True,,"{""dealer"": 0.0, ""importer"": 0.0, ""ecommerce"": 0.0, ""marketplace"": 2.0, ""finance"": 0.0}",de,7,
+autovit.ro,marketplace,classifieds,,RO,sure,marketplace,0.78,marketplace,0.97,,,marketplace,1.0,False,True,,"{""dealer"": 2.0, ""importer"": 3.0, ""ecommerce"": 0.0, ""marketplace"": 7.0, ""finance"": 0.0}",ro,591,
+autoscout24.ro,marketplace,classifieds,,RO,sure,marketplace,0.83,marketplace,0.97,,,marketplace,1.0,False,True,,"{""dealer"": 0.0, ""importer"": 0.0, ""ecommerce"": 0.0, ""marketplace"": 6.0, ""finance"": 0.0}",ro,0,
+autoscout24.es,marketplace,classifieds,,ES,sure,marketplace,0.92,marketplace,0.97,,,marketplace,1.0,False,True,,"{""dealer"": 0.0, ""importer"": 0.0, ""ecommerce"": 0.0, ""marketplace"": 9.0, ""finance"": 3.0}",es,0,
+coches.net,marketplace,classifieds,,ES,sure,importer,0.23,marketplace,0.97,,,marketplace,0.91,False,True,,"{""dealer"": 0.0, ""importer"": 3.0, ""ecommerce"": 0.0, ""marketplace"": 0.0, ""finance"": 3.0}",es,0,
+publi24.ro,marketplace,general-classifieds,,RO,guess,marketplace,0.73,marketplace,0.96,,,marketplace,1.0,False,True,,"{""dealer"": 2.0, ""importer"": 0.0, ""ecommerce"": 2.0, ""marketplace"": 6.0, ""finance"": 0.0}",ro,8,
+autotracer.ro,unsupported,vehicle-history,,RO,sure,dealer,0.16,unsupported,0.95,,,unsupported,0.91,False,True,,"{""dealer"": 2.0, ""importer"": 0.0, ""ecommerce"": 0.0, ""marketplace"": 0.0, ""finance"": 0.0}",ro,322,
+autodoc.ro,unsupported,service,,RO,sure,marketplace,0.65,unsupported,0.9,,,unsupported,0.74,False,True,,"{""dealer"": 2.5, ""importer"": 0.0, ""ecommerce"": 0.0, ""marketplace"": 5.0, ""finance"": 0.0}",en,23,
+autodoc.es,ecommerce,parts,,ES,sure,,,,,,,,,,,,,,,BLOCKED_BY_WAF: Homepage returned HTTP 403 for our crawler
+automobilus.ro,ecommerce,parts,,RO,sure,,,,,,,,,,,,,,,BLOCKED_BY_WAF: Homepage returned HTTP 403 for our crawler
+autoeco.ro,ecommerce,parts,,RO,guess,,,,,,,,,,,,,,,BLOCKED_BY_WAF: Homepage returned HTTP 403 for our crawler
+norauto.ro,ecommerce,parts,,RO,guess,,,,,,,,,,,,,,,BLOCKED_BY_WAF: Homepage returned HTTP 403 for our crawler
+norauto.es,ecommerce,parts,,ES,guess,,,,,,,,,,,,,,,BLOCKED_BY_WAF: Homepage returned HTTP 403 for our crawler
+unicredit.ro,finance,finance,bank,RO,sure,,,,,,,,,,,,,,,BLOCKED_BY_WAF: Homepage returned HTTP 403 for our crawler
+bcr.ro,finance,finance,bank,RO,sure,ecommerce,0.43,finance,0.98,,,finance,0.87,False,True,,"{""dealer"": 0.0, ""importer"": 1.0, ""ecommerce"": 5.0, ""marketplace"": 0.0, ""finance"": 5.0}",ro,2637,
+raiffeisen.ro,finance,finance,bank,RO,sure,finance,0.26,finance,0.95,,,finance,0.96,False,True,,"{""dealer"": 0.0, ""importer"": 0.0, ""ecommerce"": 2.0, ""marketplace"": 0.0, ""finance"": 3.0}",ro,1257,
+brd.ro,finance,finance,bank,RO,sure,finance,0.72,finance,0.98,,,finance,1.0,False,True,,"{""dealer"": 0.0, ""importer"": 0.0, ""ecommerce"": 0.0, ""marketplace"": 1.0, ""finance"": 5.0}",ro,1112,
+bancatransilvania.ro,finance,finance,bank,RO,sure,,,,,,,,,,,,,,,BLOCKED_BY_WAF: Homepage returned HTTP 403 for our crawler
+santander.es,unsupported,government,,ES,sure,unsupported,0.9,unsupported,0.99,,,unsupported,0.9,False,True,,"{""dealer"": 0.0, ""importer"": 0.0, ""ecommerce"": 0.0, ""marketplace"": 0.0, ""finance"": 0.0}",es,0,
+bbva.es,finance,finance,bank,ES,sure,,,,,,,,,,,,,,,BLOCKED_BY_WAF: Homepage returned HTTP 403 for our crawler
+cetelem.es,finance,finance,consumer-credit,ES,sure,,,,,,,,,,,,,,,UNREACHABLE: Could not connect to www.cetelem.es
+arval.ro,finance,finance,leasing,RO,guess,,,,,,,,,,,,,,,BLOCKED_BY_WAF: Homepage returned HTTP 403 for our crawler
+ayvens.com,finance,finance,leasing,RO,guess,marketplace,0.06,finance,0.95,,,finance,0.94,False,True,,"{""dealer"": 0.0, ""importer"": 0.0, ""ecommerce"": 0.0, ""marketplace"": 1.0, ""finance"": 0.0}",ro,0,
+totalrenting.es,finance,finance,leasing,ES,guess,marketplace,0.46,finance,0.95,,,finance,0.84,False,True,,"{""dealer"": 4.5, ""importer"": 5.0, ""ecommerce"": 0.0, ""marketplace"": 6.0, ""finance"": 0.0}",es,2666,
+skoda.ro,importer,oem,,RO,sure,importer,0.32,importer,0.95,Škoda,,importer,0.97,False,True,,"{""dealer"": 2.0, ""importer"": 4.0, ""ecommerce"": 3.0, ""marketplace"": 2.0, ""finance"": 0.0}",ro,792,
+kia.ro,importer,oem,,RO,sure,importer,0.85,importer,0.95,Kia,,importer,0.99,False,True,,"{""dealer"": 2.0, ""importer"": 7.0, ""ecommerce"": 0.0, ""marketplace"": 0.0, ""finance"": 0.0}",en,0,
+autoworld.ro,dealer,used-dealer,,RO,guess,ecommerce,0.85,dealer,0.9,Audi|Volkswagen|Mazda|Volvo|MG Motor,,dealer,0.69,True,True,,"{""dealer"": 0.0, ""importer"": 0.0, ""ecommerce"": 7.0, ""marketplace"": 2.0, ""finance"": 0.0}",ro,998,
+rominserv.ro,unsupported,industrial,,RO,sure,unsupported,0.9,unsupported,0.98,,,unsupported,0.9,False,True,,"{""dealer"": 0.0, ""importer"": 0.0, ""ecommerce"": 0.0, ""marketplace"": 0.0, ""finance"": 0.0}",ro,0,
+vwfs.es,finance,finance,captive,ES,sure,finance,0.32,finance,0.97,Audi|Volkswagen|Seat|Škoda|Cupra|Porsche,,finance,0.99,False,True,,"{""dealer"": 0.0, ""importer"": 0.0, ""ecommerce"": 0.0, ""marketplace"": 0.0, ""finance"": 3.0}",es,109,
+raiffeisen-leasing.ro,finance,finance,leasing,RO,sure,finance,0.32,finance,0.65,,,finance,0.67,True,True,,"{""dealer"": 0.0, ""importer"": 0.0, ""ecommerce"": 0.0, ""marketplace"": 0.0, ""finance"": 3.0}",ro,128,
+unicredit-leasing.ro,finance,finance,leasing,RO,sure,finance,0.62,finance,0.96,,,finance,0.99,False,True,,"{""dealer"": 2.0, ""importer"": 0.0, ""ecommerce"": 2.0, ""marketplace"": 0.0, ""finance"": 5.0}",ro,0,
+bcr-leasing.ro,finance,finance,leasing,RO,sure,importer,0.06,finance,0.95,,,finance,0.94,False,True,,"{""dealer"": 0.0, ""importer"": 1.0, ""ecommerce"": 0.0, ""marketplace"": 0.0, ""finance"": 0.0}",ro,108,
+santanderconsumer.es,finance,finance,consumer-credit,ES,sure,finance,0.62,finance,0.97,,,finance,1.0,False,True,,"{""dealer"": 0.0, ""importer"": 3.0, ""ecommerce"": 0.0, ""marketplace"": 0.0, ""finance"": 5.0}",es,0,
+cofidis.es,finance,finance,consumer-credit,ES,sure,finance,0.75,finance,0.97,,,finance,1.0,False,True,,"{""dealer"": 0.0, ""importer"": 0.0, ""ecommerce"": 0.0, ""marketplace"": 0.0, ""finance"": 5.0}",es,41,
+bancosantander.es,finance,finance,bank,ES,sure,finance,0.66,finance,0.98,,,finance,1.0,False,True,,"{""dealer"": 0.0, ""importer"": 0.0, ""ecommerce"": 2.0, ""marketplace"": 1.0, ""finance"": 5.0}",es,507,

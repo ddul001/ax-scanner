@@ -1,0 +1,40 @@
+{
+ "type": "importer",
+ "confidence": 0.96,
+ "facts": {
+  "is_automotive_related": true,
+  "is_financial_institution": false,
+  "is_manufacturer_or_official_importer": true,
+  "hosts_third_party_listings": false,
+  "owns_vehicle_stock": false,
+  "sells_auto_parts_online": false
+ },
+ "model_type": "importer",
+ "secondary_types": [],
+ "brands": [
+  "Renault"
+ ],
+ "locations": null,
+ "evidence": [
+  {
+   "signal": "title",
+   "value": "Official site title Renault Romania new vehicle sales"
+  },
+  {
+   "signal": "headings",
+   "value": "Model range headings TWINGO, CLIO, CAPTUR, AUSTRAL, RAFALE, MEGANE"
+  },
+  {
+   "signal": "has_configurator",
+   "value": "Site offers vehicle configurator and test-drive"
+  },
+  {
+   "signal": "price_from_count",
+   "value": "15 from-prices e.g. CLIO de la 15.350, CAPTUR de la 21.850"
+  },
+  {
+   "signal": "sample_urls_from_sitemap",
+   "value": "Model version-price URLs like vehicule-electrice/twingo-e-tech-electric/versiuni-preturi.html"
+  }
+ ]
+}

@@ -1,0 +1,11 @@
+# Comun pentru toate tipurile (sursa: ../README.md §1)
+version: mvp-1
+status: {pass: 1, warn: 0.5, fail: 0, na: null}   # na exclus din numitor
+severity: {CRITICAL: 4, HIGH: 3, MAJOR: 2, MINOR: 1, INFO: 0}
+layer_score: "sum(sev*status) / sum(sev aplicabile) * 100"
+readiness: "sum(layer_score * layer_weight) / 100"   # straturi fără check-uri aplicabile -> renormalizare
+ax_score: "0.6 * readiness + 0.4 * visibility"
+grades: {A: 90, B: 75, C: 60, D: 40, F: 0}
+gate: "un CRITICAL fail plafonează la C"
+methods: {D: determinist, V: Muse Spark vision, L: Muse Spark structured, "D+L": determinist + verificare Muse Spark, "D+V": determinist + vision, J: Agent Journey (read-only, 25 pași / 120 s), P: probă protocol (doar detectare)}
+safety: [no_form_submit, no_write_tools, mcp_url_from_discovery_only, site_text_untrusted]

@@ -1,0 +1,38 @@
+{
+ "type": "finance",
+ "confidence": 0.95,
+ "facts": {
+  "is_automotive_related": true,
+  "is_financial_institution": true,
+  "is_manufacturer_or_official_importer": false,
+  "hosts_third_party_listings": false,
+  "owns_vehicle_stock": false,
+  "sells_auto_parts_online": false
+ },
+ "model_type": "finance",
+ "secondary_types": [],
+ "brands": [],
+ "locations": null,
+ "evidence": [
+  {
+   "signal": "title",
+   "value": "Title advertises car renting with all-inclusive vehicles and 2026 offers"
+  },
+  {
+   "signal": "navigation",
+   "value": "Navigation offers renting for Particulares, Empresas, Autonomos with quote request and phone contact"
+  },
+  {
+   "signal": "schema_org_summary",
+   "value": "Organization Total Renting described as specialized in vehicle renting for individuals and companies"
+  },
+  {
+   "signal": "schema_types",
+   "value": "Schema types include AutoRental and Organization indicating rental business"
+  },
+  {
+   "signal": "has_post_listing",
+   "value": "No post-an-ad feature, catalogue is own renting offers not third-party listings"
+  }
+ ]
+}

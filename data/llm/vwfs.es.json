@@ -1,0 +1,41 @@
+{
+ "type": "finance",
+ "confidence": 0.97,
+ "facts": {
+  "is_automotive_related": true,
+  "is_financial_institution": true,
+  "is_manufacturer_or_official_importer": false,
+  "hosts_third_party_listings": false,
+  "owns_vehicle_stock": false,
+  "sells_auto_parts_online": false
+ },
+ "model_type": "finance",
+ "secondary_types": [],
+ "brands": [
+  "Audi",
+  "Volkswagen",
+  "Seat",
+  "Škoda",
+  "CUPRA",
+  "Porsche"
+ ],
+ "locations": null,
+ "evidence": [
+  {
+   "signal": "title",
+   "value": "Title states car financing, renting and insurance by VWFS"
+  },
+  {
+   "signal": "schema_org_summary",
+   "value": "Organization named Volkswagen Financial Services"
+  },
+  {
+   "signal": "headings",
+   "value": "Renting from 275 euros per month and brand sections for Audi, Volkswagen, Seat, Skoda"
+  },
+  {
+   "signal": "sample_urls_from_sitemap",
+   "value": "URLs for renting offers, flexible purchase, maintenance-insurance and fleet solutions"
+  }
+ ]
+}

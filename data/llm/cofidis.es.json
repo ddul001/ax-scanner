@@ -1,0 +1,38 @@
+{
+ "type": "finance",
+ "confidence": 0.97,
+ "facts": {
+  "is_automotive_related": true,
+  "is_financial_institution": true,
+  "is_manufacturer_or_official_importer": false,
+  "hosts_third_party_listings": false,
+  "owns_vehicle_stock": false,
+  "sells_auto_parts_online": false
+ },
+ "model_type": "finance",
+ "secondary_types": [],
+ "brands": [],
+ "locations": null,
+ "evidence": [
+  {
+   "signal": "title",
+   "value": "Title is Creditos y Prestamos by Cofidis, a consumer finance lender"
+  },
+  {
+   "signal": "finance_hits",
+   "value": "11 finance hits for direct credit, personal loan up to 60000 euros and insurance"
+  },
+  {
+   "signal": "schema_types",
+   "value": "Schema includes FinancialService, Organization and ContactPoint, no Vehicle schema"
+  },
+  {
+   "signal": "navigation",
+   "value": "Navigation lists Credito Directo, Prestamo Personal, Ver prestamo coche and Simulador"
+  },
+  {
+   "signal": "vin_count",
+   "value": "Zero VINs, zero km mentions and no stock or dealer URL patterns"
+  }
+ ]
+}

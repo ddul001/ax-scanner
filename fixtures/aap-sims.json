@@ -1,0 +1,949 @@
+{
+ "dealer": {
+  "/.well-known/agent-card.json": {
+   "name": "AutoNova Cluj",
+   "description": "Dealer autorizat Velora în Cluj-Napoca: stoc, detalii vehicul și lead cu consimțământ prin MCP, A2A și PAP.",
+   "supportedInterfaces": [
+    {
+     "url": "https://api.autonova.example/a2a",
+     "protocolBinding": "JSONRPC",
+     "protocolVersion": "1.0"
+    }
+   ],
+   "provider": {
+    "organization": "AutoNova Cluj",
+    "url": "https://autonova.example/"
+   },
+   "version": "1.0.0",
+   "documentationUrl": "https://autonova.example/llms.txt",
+   "capabilities": {
+    "extensions": [
+     {
+      "uri": "https://autoagentprotocol.org/extensions/aap/v3.0",
+      "description": "Auto Agent Protocol v3.0.0 — shared automotive contract.",
+      "required": true,
+      "params": {
+       "id": "autonova",
+       "version": "3.0.0",
+       "schema_base_url": "https://autoagentprotocol.org/v3.0/schemas/",
+       "skills": {
+        "dealer.information": {
+         "request_schema": "https://autoagentprotocol.org/v3.0/schemas/dealer-information-request.schema.json",
+         "response_schema": "https://autoagentprotocol.org/v3.0/schemas/dealer-information-response.schema.json"
+        },
+        "inventory.facets": {
+         "request_schema": "https://autoagentprotocol.org/v3.0/schemas/inventory-facets-request.schema.json",
+         "response_schema": "https://autoagentprotocol.org/v3.0/schemas/inventory-facets-response.schema.json"
+        },
+        "inventory.search": {
+         "request_schema": "https://autoagentprotocol.org/v3.0/schemas/inventory-search-request.schema.json",
+         "response_schema": "https://autoagentprotocol.org/v3.0/schemas/inventory-search-response.schema.json",
+         "capabilities": {
+          "scope": "dealer",
+          "filters": [
+           "make",
+           "model",
+           "trim",
+           "condition",
+           "vehicle_type",
+           "transmission",
+           "fuel",
+           "electric_range_mi_min",
+           "electric_range_mi_max",
+           "dc_fast_charge",
+           "charge_port",
+           "driveline",
+           "body",
+           "displacement_cc_min",
+           "displacement_cc_max",
+           "exterior_color",
+           "rooftops",
+           "status",
+           "features_all",
+           "features_any",
+           "near",
+           "year_min",
+           "year_max",
+           "price_min",
+           "price_max",
+           "mileage_max",
+           "vin",
+           "stock",
+           "query"
+          ],
+          "sort_fields": [
+           "price",
+           "list_price",
+           "msrp",
+           "mileage",
+           "year",
+           "make",
+           "model",
+           "stock",
+           "updated_at",
+           "distance_mi"
+          ],
+          "default_sort": {
+           "field": "price",
+           "order": "asc"
+          },
+          "default_limit": 20,
+          "max_limit": 100,
+          "offset": true
+         }
+        },
+        "inventory.vehicle": {
+         "request_schema": "https://autoagentprotocol.org/v3.0/schemas/vehicle-detail-request.schema.json",
+         "response_schema": "https://autoagentprotocol.org/v3.0/schemas/vehicle-detail-response.schema.json"
+        },
+        "lead.submit": {
+         "request_schema": "https://autoagentprotocol.org/v3.0/schemas/lead-submit-request.schema.json",
+         "response_schema": "https://autoagentprotocol.org/v3.0/schemas/lead-submit-response.schema.json"
+        }
+       },
+       "mcp": {
+        "url": "https://api.autonova.example/aap/3.0.0/mcp",
+        "transport": "streamable-http",
+        "protocol_versions": [
+         "2026-07-28",
+         "2025-11-25"
+        ],
+        "public_read": true
+       },
+       "poppy": "https://autonova.example/.well-known/poppy.json",
+       "llms_txt": "https://autonova.example/llms.txt"
+      }
+     },
+     {
+      "uri": "https://aivexia.example/extensions/aap-eu/v1",
+      "description": "AAP-EU profile: EUR, VAT-inclusive final price (Directive 98/6/EC), km, WLTP, GDPR consent.",
+      "required": false,
+      "params": {
+       "currency": "EUR",
+       "price_includes_vat": true,
+       "price_directive": "98/6/EC",
+       "units": {
+        "distance": "km",
+        "consumption": "l/100km",
+        "ev_consumption": "kWh/100km"
+       },
+       "emissions_standard": "WLTP",
+       "gdpr": {
+        "legal_basis": "consent",
+        "retention_days": 365,
+        "erasure_url": "https://autonova.example/confidentialitate/stergere"
+       }
+      }
+     }
+    ]
+   },
+   "defaultInputModes": [
+    "application/vnd.autoagent.dealer-information-request+json",
+    "application/vnd.autoagent.inventory-facets-request+json",
+    "application/vnd.autoagent.inventory-search-request+json",
+    "application/vnd.autoagent.vehicle-detail-request+json",
+    "application/vnd.autoagent.lead-submit-request+json"
+   ],
+   "defaultOutputModes": [
+    "application/vnd.autoagent.dealer-information-response+json",
+    "application/vnd.autoagent.inventory-facets-response+json",
+    "application/vnd.autoagent.inventory-search-response+json",
+    "application/vnd.autoagent.vehicle-detail-response+json",
+    "application/vnd.autoagent.lead-submit-response+json"
+   ],
+   "skills": [
+    {
+     "id": "dealer.information",
+     "name": "Dealer Information",
+     "description": "Read dealership identity, rooftops, coordinates, hours, contact channels and default fee disclosures. On aggregate inventory, resolve a listing's dealer_id to the actual seller before consent.",
+     "tags": [
+      "dealer",
+      "dealership",
+      "profile",
+      "hours",
+      "contact",
+      "locations",
+      "fees",
+      "automotive",
+      "motorcycles",
+      "powersports"
+     ],
+     "inputModes": [
+      "application/vnd.autoagent.dealer-information-request+json"
+     ],
+     "outputModes": [
+      "application/vnd.autoagent.dealer-information-response+json"
+     ]
+    },
+    {
+     "id": "inventory.facets",
+     "name": "Inventory Facets",
+     "description": "Discover inventory values, numeric ranges and supported feature codes with verified-present counts.",
+     "tags": [
+      "inventory",
+      "facets",
+      "aggregation",
+      "filters",
+      "automotive",
+      "motorcycles",
+      "powersports"
+     ],
+     "inputModes": [
+      "application/vnd.autoagent.inventory-facets-request+json"
+     ],
+     "outputModes": [
+      "application/vnd.autoagent.inventory-facets-response+json"
+     ]
+    },
+    {
+     "id": "inventory.search",
+     "name": "Inventory Search",
+     "description": "Find vehicles using advertised constraints, source-backed equipment, rooftop radius and complete cursor pagination. Return applied filters, freshness and authoritative prices.",
+     "tags": [
+      "inventory",
+      "vehicles",
+      "search",
+      "cars",
+      "motorcycles",
+      "powersports",
+      "automotive"
+     ],
+     "inputModes": [
+      "application/vnd.autoagent.inventory-search-request+json"
+     ],
+     "outputModes": [
+      "application/vnd.autoagent.inventory-search-response+json"
+     ]
+    },
+    {
+     "id": "inventory.vehicle",
+     "name": "Vehicle Detail",
+     "description": "Read one listing by VIN, stock or vehicle ID, including current status, equipment evidence, pricing and relevant specifications.",
+     "tags": [
+      "inventory",
+      "vehicle",
+      "vin",
+      "stock",
+      "detail",
+      "automotive",
+      "motorcycles",
+      "powersports"
+     ],
+     "inputModes": [
+      "application/vnd.autoagent.vehicle-detail-request+json"
+     ],
+     "outputModes": [
+      "application/vnd.autoagent.vehicle-detail-response+json"
+     ]
+    },
+    {
+     "id": "lead.submit",
+     "name": "Submit Lead",
+     "description": "Submit one explicitly consented inquiry with optional vehicle, trade-in and appointment details. Require an idempotency key; duplicate suppression lasts at least 24 hours. Reconcile uncertain outcomes before retrying after that window. Report lead and booking outcomes separately.",
+     "tags": [
+      "lead",
+      "contact",
+      "consent",
+      "sales",
+      "appointment",
+      "automotive",
+      "motorcycles",
+      "powersports"
+     ],
+     "inputModes": [
+      "application/vnd.autoagent.lead-submit-request+json"
+     ],
+     "outputModes": [
+      "application/vnd.autoagent.lead-submit-response+json"
+     ]
+    }
+   ]
+  },
+  "/.well-known/poppy.json": {
+   "protocol_version": "0.3",
+   "organization": {
+    "name": "AutoNova Cluj",
+    "domain": "autonova.example"
+   },
+   "auth": {
+    "issuer": "https://autonova.example/poppy"
+   },
+   "apis": [
+    {
+     "type": "openapi",
+     "url": "https://autonova.example/poppy/openapi.yaml",
+     "resource": "https://autonova.example/poppy",
+     "description": "Dealer information, inventory facets, search, vehicle details and consented leads using AAP payloads and Poppy guest sessions."
+    }
+   ],
+   "web": {},
+   "extensions": {
+    "autoagentprotocol.org/aap": {
+     "version": "1",
+     "agent_card": "https://autonova.example/.well-known/agent-card.json",
+     "documentation": "https://autoagentprotocol.org/",
+     "aap_version": "3.0.0",
+     "mcp": "https://api.autonova.example/aap/3.0.0/mcp",
+     "llms_txt": "https://autonova.example/llms.txt"
+    }
+   }
+  },
+  "mcp:aap_inventory_search": {
+   "type": "inventory.search.response",
+   "data": {
+    "total": 2,
+    "limit": 100,
+    "vehicles": [
+     {
+      "dealer_id": "autonova-cluj",
+      "vehicle_id": "vlr-0001",
+      "vin": "VLR1TERRA23000001",
+      "stock": "CJ-0001",
+      "rooftop": "AutoNova Cluj",
+      "year": 2023,
+      "make": "Velora",
+      "model": "Terra",
+      "trim": "Hybrid Comfort",
+      "transmission": "automatic",
+      "condition": "used",
+      "status": "available",
+      "driveline": "fwd",
+      "fuel": "hybrid",
+      "price": 27900,
+      "fees": [],
+      "mileage": 17710,
+      "vdp_url": "https://autonova.example/stoc/vlr-0001",
+      "updated_at": "2026-10-27T06:00:00Z",
+      "body": "suv",
+      "other_attributes": {
+       "currency": "EUR",
+       "price_includes_vat": true,
+       "mileage_km": 28500,
+       "wltp_l_100km": 5.1,
+       "co2_g_km": 116
+      },
+      "features": [
+       "navigation",
+       "camera_360",
+       "heated_seats"
+      ],
+      "feature_evidence": [
+       {
+        "code": "navigation",
+        "label": "Navigație",
+        "status": "present",
+        "source": "inventory",
+        "text": "Navigație cu hărți Europa (fișa de stoc)",
+        "url": "https://autonova.example/stoc/vlr-0001",
+        "observed_at": "2026-10-27T06:00:00Z"
+       },
+       {
+        "code": "sunroof",
+        "label": "Trapă",
+        "status": "absent",
+        "source": "inventory",
+        "text": "Fără trapă (fișa de stoc)",
+        "url": "https://autonova.example/stoc/vlr-0001",
+        "observed_at": "2026-10-27T06:00:00Z"
+       }
+      ]
+     },
+     {
+      "dealer_id": "autonova-cluj",
+      "vehicle_id": "vlr-0002",
+      "vin": "VLR1EVLTE26000002",
+      "stock": "CJ-0002",
+      "rooftop": "AutoNova Cluj",
+      "year": 2026,
+      "make": "Velora",
+      "model": "Volt",
+      "trim": "Long Range",
+      "transmission": "automatic",
+      "condition": "new",
+      "status": "available",
+      "driveline": "fwd",
+      "fuel": "electric",
+      "price": 36500,
+      "fees": [],
+      "mileage": 6,
+      "vdp_url": "https://autonova.example/stoc/vlr-0002",
+      "updated_at": "2026-10-27T06:00:00Z",
+      "body": "hatchback",
+      "electric_range_mi": 298,
+      "other_attributes": {
+       "currency": "EUR",
+       "price_includes_vat": true,
+       "electric_range_km": 480,
+       "wltp_kwh_100km": 15.2,
+       "co2_g_km": 0
+      }
+     }
+    ],
+    "applied_filters": {
+     "make": [
+      "Velora"
+     ]
+    },
+    "sort": {
+     "field": "price",
+     "order": "asc"
+    },
+    "next_cursor": null
+   },
+   "message": "2 vehicule Velora disponibile la AutoNova Cluj. Prețurile sunt finale, în EUR, cu TVA inclus (Directiva 98/6/CE); mileage este în mile conform AAP 3.0, valoarea în km este în other_attributes.mileage_km."
+  },
+  "mcp:aap_inventory_vehicle": {
+   "type": "inventory.vehicle.response",
+   "data": {
+    "dealer_id": "autonova-cluj",
+    "vehicle_id": "vlr-0001",
+    "vin": "VLR1TERRA23000001",
+    "stock": "CJ-0001",
+    "rooftop": "AutoNova Cluj",
+    "year": 2023,
+    "make": "Velora",
+    "model": "Terra",
+    "trim": "Hybrid Comfort",
+    "transmission": "automatic",
+    "condition": "used",
+    "status": "available",
+    "driveline": "fwd",
+    "fuel": "hybrid",
+    "price": 27900,
+    "fees": [],
+    "mileage": 17710,
+    "vdp_url": "https://autonova.example/stoc/vlr-0001",
+    "updated_at": "2026-10-27T06:00:00Z",
+    "body": "suv",
+    "other_attributes": {
+     "currency": "EUR",
+     "price_includes_vat": true,
+     "mileage_km": 28500,
+     "wltp_l_100km": 5.1,
+     "co2_g_km": 116
+    },
+    "features": [
+     "navigation",
+     "camera_360",
+     "heated_seats"
+    ],
+    "feature_evidence": [
+     {
+      "code": "navigation",
+      "label": "Navigație",
+      "status": "present",
+      "source": "inventory",
+      "text": "Navigație cu hărți Europa (fișa de stoc)",
+      "url": "https://autonova.example/stoc/vlr-0001",
+      "observed_at": "2026-10-27T06:00:00Z"
+     },
+     {
+      "code": "sunroof",
+      "label": "Trapă",
+      "status": "absent",
+      "source": "inventory",
+      "text": "Fără trapă (fișa de stoc)",
+      "url": "https://autonova.example/stoc/vlr-0001",
+      "observed_at": "2026-10-27T06:00:00Z"
+     }
+    ]
+   },
+   "message": "Velora Terra Hybrid Comfort 2023, 27.900 € preț final cu TVA inclus; 28.500 km (mileage AAP în mile)."
+  },
+  "mcp:error-unsupported-filter": {
+   "type": "aap.error",
+   "error_id": "err_01HX9P7Z6ZK4N3D6V5K3W2T7M0",
+   "code": "UNSUPPORTED_FILTER",
+   "message": "Filter 'interior_color' is not declared in inventory.search capabilities.",
+   "retryable": false,
+   "details": {
+    "filter": "interior_color"
+   },
+   "created_at": "2026-10-27T06:00:00Z"
+  },
+  "mcp:aap_dealer_information": {
+   "type": "dealer.information.response",
+   "data": {
+    "dealer_id": "autonova-cluj",
+    "name": "AutoNova Cluj",
+    "rooftops": [
+     {
+      "name": "AutoNova Cluj",
+      "legal_name": "AutoNova Cluj SRL",
+      "website": "https://autonova.example",
+      "geo": {
+       "latitude": 46.7712,
+       "longitude": 23.6236
+      },
+      "emails": [
+       {
+        "name": "Sales",
+        "value": "vanzari@autonova.example"
+       }
+      ],
+      "phones": [
+       {
+        "name": "Sales",
+        "value": "+40264000100"
+       },
+       {
+        "name": "Service",
+        "value": "+40264000200"
+       },
+       {
+        "name": "Parts",
+        "value": "+40264000300"
+       }
+      ],
+      "address": {
+       "country": "RO",
+       "city": "Cluj-Napoca",
+       "address_line_1": "Str. Exemplu 10",
+       "zip": "400000"
+      },
+      "schedules": [
+       {
+        "name": "sales",
+        "value": {
+         "monday": {
+          "open": "09:00",
+          "close": "18:00"
+         },
+         "tuesday": {
+          "open": "09:00",
+          "close": "18:00"
+         },
+         "wednesday": {
+          "open": "09:00",
+          "close": "18:00"
+         },
+         "thursday": {
+          "open": "09:00",
+          "close": "18:00"
+         },
+         "friday": {
+          "open": "09:00",
+          "close": "18:00"
+         },
+         "saturday": {
+          "open": "09:00",
+          "close": "14:00"
+         }
+        }
+       },
+       {
+        "name": "service",
+        "value": {
+         "monday": {
+          "open": "08:00",
+          "close": "17:00"
+         },
+         "tuesday": {
+          "open": "08:00",
+          "close": "17:00"
+         },
+         "wednesday": {
+          "open": "08:00",
+          "close": "17:00"
+         },
+         "thursday": {
+          "open": "08:00",
+          "close": "17:00"
+         },
+         "friday": {
+          "open": "08:00",
+          "close": "17:00"
+         }
+        }
+       },
+       {
+        "name": "parts",
+        "value": {
+         "monday": {
+          "open": "08:00",
+          "close": "17:00"
+         },
+         "tuesday": {
+          "open": "08:00",
+          "close": "17:00"
+         },
+         "wednesday": {
+          "open": "08:00",
+          "close": "17:00"
+         },
+         "thursday": {
+          "open": "08:00",
+          "close": "17:00"
+         },
+         "friday": {
+          "open": "08:00",
+          "close": "17:00"
+         }
+        }
+       }
+      ]
+     }
+    ]
+   }
+  }
+ },
+ "importer": {
+  "/.well-known/agent-card.json": {
+   "name": "Velora România",
+   "description": "Importatorul oficial Velora în România: rețeaua de dealeri și stocul agregat prin MCP, A2A și PAP.",
+   "supportedInterfaces": [
+    {
+     "url": "https://api.velora-ro.example/a2a",
+     "protocolBinding": "JSONRPC",
+     "protocolVersion": "1.0"
+    }
+   ],
+   "provider": {
+    "organization": "Velora România",
+    "url": "https://velora-ro.example/"
+   },
+   "version": "1.0.0",
+   "documentationUrl": "https://velora-ro.example/llms.txt",
+   "capabilities": {
+    "extensions": [
+     {
+      "uri": "https://autoagentprotocol.org/extensions/aap/v3.0",
+      "description": "Auto Agent Protocol v3.0.0 — shared automotive contract.",
+      "required": true,
+      "params": {
+       "id": "velora-ro",
+       "version": "3.0.0",
+       "schema_base_url": "https://autoagentprotocol.org/v3.0/schemas/",
+       "skills": {
+        "dealer.information": {
+         "request_schema": "https://autoagentprotocol.org/v3.0/schemas/dealer-information-request.schema.json",
+         "response_schema": "https://autoagentprotocol.org/v3.0/schemas/dealer-information-response.schema.json"
+        },
+        "inventory.facets": {
+         "request_schema": "https://autoagentprotocol.org/v3.0/schemas/inventory-facets-request.schema.json",
+         "response_schema": "https://autoagentprotocol.org/v3.0/schemas/inventory-facets-response.schema.json"
+        },
+        "inventory.search": {
+         "request_schema": "https://autoagentprotocol.org/v3.0/schemas/inventory-search-request.schema.json",
+         "response_schema": "https://autoagentprotocol.org/v3.0/schemas/inventory-search-response.schema.json",
+         "capabilities": {
+          "scope": "aggregate",
+          "filters": [
+           "make",
+           "model",
+           "trim",
+           "condition",
+           "vehicle_type",
+           "transmission",
+           "fuel",
+           "electric_range_mi_min",
+           "electric_range_mi_max",
+           "dc_fast_charge",
+           "charge_port",
+           "driveline",
+           "body",
+           "displacement_cc_min",
+           "displacement_cc_max",
+           "exterior_color",
+           "status",
+           "features_all",
+           "features_any",
+           "near",
+           "year_min",
+           "year_max",
+           "price_min",
+           "price_max",
+           "mileage_max",
+           "vin",
+           "stock",
+           "query"
+          ],
+          "sort_fields": [
+           "price",
+           "list_price",
+           "msrp",
+           "mileage",
+           "year",
+           "make",
+           "model",
+           "stock",
+           "updated_at",
+           "distance_mi"
+          ],
+          "default_sort": {
+           "field": "price",
+           "order": "asc"
+          },
+          "default_limit": 20,
+          "max_limit": 100,
+          "offset": true
+         }
+        },
+        "inventory.vehicle": {
+         "request_schema": "https://autoagentprotocol.org/v3.0/schemas/vehicle-detail-request.schema.json",
+         "response_schema": "https://autoagentprotocol.org/v3.0/schemas/vehicle-detail-response.schema.json"
+        }
+       },
+       "mcp": {
+        "url": "https://api.velora-ro.example/aap/3.0.0/mcp",
+        "transport": "streamable-http",
+        "protocol_versions": [
+         "2026-07-28",
+         "2025-11-25"
+        ],
+        "public_read": true
+       },
+       "poppy": "https://velora-ro.example/.well-known/poppy.json",
+       "llms_txt": "https://velora-ro.example/llms.txt"
+      }
+     },
+     {
+      "uri": "https://aivexia.example/extensions/aap-eu/v1",
+      "description": "AAP-EU profile: EUR, VAT-inclusive final price (Directive 98/6/EC), km, WLTP, GDPR consent.",
+      "required": false,
+      "params": {
+       "currency": "EUR",
+       "price_includes_vat": true,
+       "price_directive": "98/6/EC",
+       "units": {
+        "distance": "km",
+        "consumption": "l/100km",
+        "ev_consumption": "kWh/100km"
+       },
+       "emissions_standard": "WLTP",
+       "gdpr": {
+        "legal_basis": "consent",
+        "retention_days": 365,
+        "erasure_url": "https://velora-ro.example/confidentialitate/stergere"
+       }
+      }
+     }
+    ]
+   },
+   "defaultInputModes": [
+    "application/vnd.autoagent.dealer-information-request+json",
+    "application/vnd.autoagent.inventory-facets-request+json",
+    "application/vnd.autoagent.inventory-search-request+json",
+    "application/vnd.autoagent.vehicle-detail-request+json"
+   ],
+   "defaultOutputModes": [
+    "application/vnd.autoagent.dealer-information-response+json",
+    "application/vnd.autoagent.inventory-facets-response+json",
+    "application/vnd.autoagent.inventory-search-response+json",
+    "application/vnd.autoagent.vehicle-detail-response+json"
+   ],
+   "skills": [
+    {
+     "id": "dealer.information",
+     "name": "Dealer Information",
+     "description": "Read dealership identity, rooftops, coordinates, hours, contact channels and default fee disclosures. On aggregate inventory, resolve a listing's dealer_id to the actual seller before consent.",
+     "tags": [
+      "dealer",
+      "dealership",
+      "profile",
+      "hours",
+      "contact",
+      "locations",
+      "fees",
+      "automotive",
+      "motorcycles",
+      "powersports"
+     ],
+     "inputModes": [
+      "application/vnd.autoagent.dealer-information-request+json"
+     ],
+     "outputModes": [
+      "application/vnd.autoagent.dealer-information-response+json"
+     ]
+    },
+    {
+     "id": "inventory.facets",
+     "name": "Inventory Facets",
+     "description": "Discover inventory values, numeric ranges and supported feature codes with verified-present counts.",
+     "tags": [
+      "inventory",
+      "facets",
+      "aggregation",
+      "filters",
+      "automotive",
+      "motorcycles",
+      "powersports"
+     ],
+     "inputModes": [
+      "application/vnd.autoagent.inventory-facets-request+json"
+     ],
+     "outputModes": [
+      "application/vnd.autoagent.inventory-facets-response+json"
+     ]
+    },
+    {
+     "id": "inventory.search",
+     "name": "Inventory Search",
+     "description": "Find vehicles using advertised constraints, source-backed equipment, rooftop radius and complete cursor pagination. Return applied filters, freshness and authoritative prices.",
+     "tags": [
+      "inventory",
+      "vehicles",
+      "search",
+      "cars",
+      "motorcycles",
+      "powersports",
+      "automotive"
+     ],
+     "inputModes": [
+      "application/vnd.autoagent.inventory-search-request+json"
+     ],
+     "outputModes": [
+      "application/vnd.autoagent.inventory-search-response+json"
+     ]
+    },
+    {
+     "id": "inventory.vehicle",
+     "name": "Vehicle Detail",
+     "description": "Read one listing by VIN, stock or vehicle ID, including current status, equipment evidence, pricing and relevant specifications.",
+     "tags": [
+      "inventory",
+      "vehicle",
+      "vin",
+      "stock",
+      "detail",
+      "automotive",
+      "motorcycles",
+      "powersports"
+     ],
+     "inputModes": [
+      "application/vnd.autoagent.vehicle-detail-request+json"
+     ],
+     "outputModes": [
+      "application/vnd.autoagent.vehicle-detail-response+json"
+     ]
+    }
+   ]
+  },
+  "/.well-known/poppy.json": {
+   "protocol_version": "0.3",
+   "organization": {
+    "name": "Velora România",
+    "domain": "velora-ro.example"
+   },
+   "auth": {
+    "issuer": "https://velora-ro.example/poppy"
+   },
+   "apis": [
+    {
+     "type": "openapi",
+     "url": "https://velora-ro.example/poppy/openapi.yaml",
+     "resource": "https://velora-ro.example/poppy",
+     "description": "Dealer network information, inventory facets, aggregate search and vehicle details using AAP payloads and Poppy guest sessions. Leads are submitted to the selected dealer."
+    }
+   ],
+   "web": {},
+   "extensions": {
+    "autoagentprotocol.org/aap": {
+     "version": "1",
+     "agent_card": "https://velora-ro.example/.well-known/agent-card.json",
+     "documentation": "https://autoagentprotocol.org/",
+     "aap_version": "3.0.0",
+     "mcp": "https://api.velora-ro.example/aap/3.0.0/mcp",
+     "llms_txt": "https://velora-ro.example/llms.txt"
+    }
+   }
+  },
+  "mcp:aap_inventory_search": {
+   "type": "inventory.search.response",
+   "data": {
+    "total": 2,
+    "limit": 100,
+    "vehicles": [
+     {
+      "dealer_id": "autonova-cluj",
+      "vehicle_id": "vlr-0002",
+      "vin": "VLR1EVLTE26000002",
+      "stock": "CJ-0002",
+      "rooftop": "AutoNova Cluj",
+      "year": 2026,
+      "make": "Velora",
+      "model": "Volt",
+      "trim": "Long Range",
+      "transmission": "automatic",
+      "condition": "new",
+      "status": "available",
+      "driveline": "fwd",
+      "fuel": "electric",
+      "price": 36500,
+      "fees": [],
+      "mileage": 6,
+      "vdp_url": "https://autonova.example/stoc/vlr-0002",
+      "updated_at": "2026-10-27T06:00:00Z",
+      "body": "hatchback",
+      "electric_range_mi": 298,
+      "other_attributes": {
+       "currency": "EUR",
+       "price_includes_vat": true,
+       "electric_range_km": 480,
+       "wltp_kwh_100km": 15.2,
+       "co2_g_km": 0
+      }
+     },
+     {
+      "dealer_id": "velora-buc",
+      "vehicle_id": "vlr-b-0101",
+      "vin": "VLR1TERRA26000101",
+      "stock": "B-0101",
+      "rooftop": "Velora Center București",
+      "year": 2026,
+      "make": "Velora",
+      "model": "Terra",
+      "trim": "Hybrid Comfort",
+      "transmission": "automatic",
+      "condition": "new",
+      "status": "available",
+      "driveline": "fwd",
+      "fuel": "hybrid",
+      "price": 29900,
+      "fees": [],
+      "mileage": 6,
+      "vdp_url": "https://velora-buc.example/stoc/b-0101",
+      "updated_at": "2026-10-27T06:00:00Z",
+      "body": "suv",
+      "other_attributes": {
+       "currency": "EUR",
+       "price_includes_vat": true
+      }
+     }
+    ],
+    "applied_filters": {
+     "make": [
+      "Velora"
+     ]
+    },
+    "sort": {
+     "field": "price",
+     "order": "asc"
+    },
+    "next_cursor": null
+   },
+   "message": "2 vehicule Velora disponibile la rețeaua Velora România. Prețurile sunt finale, în EUR, cu TVA inclus (Directiva 98/6/CE); mileage este în mile conform AAP 3.0, valoarea în km este în other_attributes.mileage_km."
+  },
+  "mcp:aap_dealer_information": {
+   "type": "dealer.information.response",
+   "data": {
+    "dealer_id": "velora-ro-network",
+    "name": "Rețeaua Velora România",
+    "rooftops": [
+     {
+      "name": "AutoNova Cluj",
+      "website": "https://autonova.example"
+     },
+     {
+      "name": "Velora Center București",
+      "website": "https://velora-buc.example"
+     },
+     {
+      "name": "Velora Timiș",
+      "website": "https://velora-tm.example"
+     }
+    ]
+   }
+  }
+ }
+}

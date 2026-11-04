@@ -1,0 +1,24 @@
+type: ecommerce
+depth: basic   # primul la tăiere (PLAN §8)
+weights: {discovery: 15, identity: 10, data: 25, actions: 20, trust: 10, agent_ux: 15, protocol: 5}
+pages_max: 15
+checks:
+  - {id: disc.robots_ai,          layer: discovery, method: D,   severity: HIGH,     pass: "boți AI permiși pe categorii + produse"}
+  - {id: disc.waf_ua,             layer: discovery, method: D,   severity: CRITICAL, pass: "UA agent = UA browser"}
+  - {id: disc.sitemap,            layer: discovery, method: D,   severity: MAJOR,    pass: "produse în sitemap, lastmod < 7 zile"}
+  - {id: disc.llms_txt,           layer: discovery, method: D,   severity: MAJOR,    pass: "200, markdown, link-uri categorii/politici/contact"}
+  - {id: disc.no_js,              layer: discovery, method: D,   severity: HIGH,     pass: "preț + stoc în HTML brut"}
+  - {id: id.schema_org,           layer: identity,  method: D,   severity: HIGH,     pass: "Organization/OnlineStore: name, logo, url, contactPoint"}
+  - {id: prod.urls,               layer: data,      method: D,   severity: CRITICAL, pass: "URL unic crawlabil"}
+  - {id: prod.schema_product,     layer: data,      method: D,   severity: HIGH,     pass: "Product: name, image, brand, sku/gtin ≥ 80%"}
+  - {id: prod.schema_offer,       layer: data,      method: D,   severity: HIGH,     pass: "Offer: price, priceCurrency, availability"}
+  - {id: prod.price_readable,     layer: data,      method: D+V, severity: CRITICAL, pass: "preț + stoc în text/JSON, nu doar JS/imagine"}
+  - {id: prod.price_consistency,  layer: data,      method: D,   severity: HIGH,     pass: "JSON-LD = preț vizibil"}
+  - {id: act.add_to_cart,         layer: actions,   method: D,   severity: HIGH,     pass: "adăugare în coș fără login"}
+  - {id: act.guest_checkout,      layer: actions,   method: D,   severity: HIGH,     pass: "până la pasul de plată fără cont/CAPTCHA (stop înainte de plată)"}
+  - {id: trust.https,             layer: trust,     method: D,   severity: HIGH,     pass: "certificat valid + redirect"}
+  - {id: trust.policies_text,     layer: trust,     method: L,   severity: MAJOR,    pass: "livrare/retur/garanție cu termene și costuri"}
+  - {id: ux.j_find,               layer: agent_ux,  method: J,   severity: CRITICAL, pass: "găsește {produs} sub {preț}, în stoc"}
+  - {id: proto.mcp_public,        layer: protocol,  method: P,   severity: MAJOR,    pass: "detectare MCP/UCP/ACP declarat (prezent da/nu, fără validare)"}
+deferred_v2: [disc.perf, disc.wellknown, id.company, id.same_as, id.lang, prod.fields, prod.policies_schema, prod.search_urls, prod.rating, prod.feed, act.forms_semantic, act.contact, act.webmcp, trust.cookie_wall, trust.injection, trust.gdpr, ux.j_total, ux.j_policy, ux.j_act, ux.blockers, ux.agent_vs_human, proto.ucp, proto.checkout_protocol]
+not_applicable: [proto.aap]

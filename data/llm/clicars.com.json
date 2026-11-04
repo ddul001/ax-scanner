@@ -1,0 +1,53 @@
+{
+ "type": "dealer",
+ "confidence": 0.95,
+ "facts": {
+  "is_automotive_related": true,
+  "is_financial_institution": false,
+  "is_manufacturer_or_official_importer": false,
+  "hosts_third_party_listings": false,
+  "owns_vehicle_stock": true,
+  "sells_auto_parts_online": false
+ },
+ "model_type": "dealer",
+ "secondary_types": [],
+ "brands": [
+  "Volkswagen",
+  "Toyota",
+  "Peugeot",
+  "Renault",
+  "BMW",
+  "Citroen",
+  "SEAT",
+  "Hyundai",
+  "Audi",
+  "Opel",
+  "Ford",
+  "Mercedes",
+  "Kia",
+  "Nissan",
+  "Volvo",
+  "Mazda",
+  "Skoda",
+  "Dacia"
+ ],
+ "locations": 7,
+ "evidence": [
+  {
+   "signal": "headings",
+   "value": "Offers over 1,750 mechanically impeccable reconditioned cars from all market brands"
+  },
+  {
+   "signal": "navigation",
+   "value": "Second-hand and Km0 cars, sell your car appraisal, financing, multibrand dealership and sales points"
+  },
+  {
+   "signal": "sample_urls_from_sitemap",
+   "value": "Stock category URLs for used and Km0 cars plus vender-coche, financiar-coche and puntos-de-venta"
+  },
+  {
+   "signal": "url_patterns",
+   "value": "83 stock URLs with per-item pricing indicates owned vehicle inventory"
+  }
+ ]
+}

@@ -1,0 +1,51 @@
+domain,expected_type,category,subtype,country,label_confidence,note
+dacia.ro,importer,oem,,RO,sure,brand site; used in earlier manual runs
+renault.ro,importer,oem,,RO,sure,
+toyota.ro,importer,oem,,RO,sure,
+volkswagen.ro,importer,oem,,RO,sure,
+ford.ro,importer,oem,,RO,sure,
+seat.es,importer,oem,,ES,sure,
+toyota.es,importer,oem,,ES,sure,
+renault.es,importer,oem,,ES,sure,
+dacia.es,importer,oem,,ES,sure,
+autoklass.ro,dealer,dealer,,RO,guess,low confidence in earlier run; verify label
+autodelrulate.ro,dealer,used-dealer,,RO,guess,named in search results (paid article)
+tiriacauto.ro,dealer,dealer,,RO,guess,Tiriac Auto
+ocasionplus.com,dealer,used-retailer,,ES,guess,"90 centers; used-car retailer, own stock"
+flexicar.es,dealer,used-retailer,,ES,guess,
+clicars.com,dealer,used-retailer,,ES,guess,
+autohero.com,dealer,used-retailer,,ES,guess,"online used-car retailer, own stock"
+autovit.ro,marketplace,classifieds,,RO,sure,
+autoscout24.ro,marketplace,classifieds,,RO,sure,
+autoscout24.es,marketplace,classifieds,,ES,sure,
+coches.net,marketplace,classifieds,,ES,sure,
+publi24.ro,marketplace,general-classifieds,,RO,guess,general classifieds with auto section
+autotracer.ro,unsupported,vehicle-history,,RO,sure,redirects to cebia.com vehicle history check; not a marketplace; label corrected after page check
+autodoc.ro,unsupported,service,,RO,sure,"auto-repair shop in Cluj (title: SERVICE AUTODOC), not the parts webshop; label corrected after page check"
+autodoc.es,ecommerce,parts,,ES,sure,
+automobilus.ro,ecommerce,parts,,RO,sure,named in search results
+autoeco.ro,ecommerce,parts,,RO,guess,named in search results
+norauto.ro,ecommerce,parts,,RO,guess,parts + fitting centers; may be mixed
+norauto.es,ecommerce,parts,,ES,guess,parts + fitting centers; may be mixed
+unicredit.ro,finance,finance,bank,RO,sure,bank / leasing parent
+bcr.ro,finance,finance,bank,RO,sure,
+raiffeisen.ro,finance,finance,bank,RO,sure,
+brd.ro,finance,finance,bank,RO,sure,
+bancatransilvania.ro,finance,finance,bank,RO,sure,
+santander.es,unsupported,government,,ES,sure,"Ayuntamiento de Santander (city hall), NOT the bank; label corrected after Muse flagged it"
+bbva.es,finance,finance,bank,ES,sure,
+cetelem.es,finance,finance,consumer-credit,ES,sure,car loans
+arval.ro,finance,finance,leasing,RO,guess,fleet leasing
+ayvens.com,finance,finance,leasing,RO,guess,fleet leasing
+totalrenting.es,finance,finance,leasing,ES,guess,renting/leasing; has a vehicle catalogue
+skoda.ro,importer,oem,,RO,sure,replaces skoda-auto.ro (unreachable)
+kia.ro,importer,oem,,RO,sure,replaces hyundai.ro (DNS fail)
+autoworld.ro,dealer,used-dealer,,RO,guess,replaces brady.ro (DNS fail); verify label
+rominserv.ro,unsupported,industrial,,RO,sure,"""Furnizor de solutii industriale la cheie""; not a dealer; label corrected after page check"
+vwfs.es,finance,finance,captive,ES,sure,replaces vwfs.ro (DNS fail); captive finance
+raiffeisen-leasing.ro,finance,finance,leasing,RO,sure,leasing IFN
+unicredit-leasing.ro,finance,finance,leasing,RO,sure,leasing IFN; redirects to unicreditleasing.ro
+bcr-leasing.ro,finance,finance,leasing,RO,sure,leasing IFN
+santanderconsumer.es,finance,finance,consumer-credit,ES,sure,consumer / car loans
+cofidis.es,finance,finance,consumer-credit,ES,sure,consumer credit
+bancosantander.es,finance,finance,bank,ES,sure,the bank (replaces mislabeled santander.es)

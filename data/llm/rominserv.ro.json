@@ -1,0 +1,34 @@
+{
+ "type": "unsupported",
+ "confidence": 0.98,
+ "facts": {
+  "is_automotive_related": false,
+  "is_financial_institution": false,
+  "is_manufacturer_or_official_importer": false,
+  "hosts_third_party_listings": false,
+  "owns_vehicle_stock": false,
+  "sells_auto_parts_online": false
+ },
+ "model_type": "unsupported",
+ "secondary_types": [],
+ "brands": [],
+ "locations": null,
+ "evidence": [
+  {
+   "signal": "title",
+   "value": "Rominserv described as turnkey industrial solutions provider"
+  },
+  {
+   "signal": "navigation",
+   "value": "Menu lists industrial services, projects, sustainability and careers with no vehicle sales or finance"
+  },
+  {
+   "signal": "headings",
+   "value": "Headings cover team, services, certifications and industrial clients like Petrotel, Lukoil, Transgaz, Rompetrol"
+  },
+  {
+   "signal": "auto_hits",
+   "value": "Zero automotive hits, no VINs, prices, makes or vehicle schemas"
+  }
+ ]
+}

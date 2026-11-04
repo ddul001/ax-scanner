@@ -1,0 +1,34 @@
+{
+ "type": "marketplace",
+ "confidence": 0.96,
+ "facts": {
+  "is_automotive_related": true,
+  "is_financial_institution": false,
+  "is_manufacturer_or_official_importer": false,
+  "hosts_third_party_listings": true,
+  "owns_vehicle_stock": false,
+  "sells_auto_parts_online": false
+ },
+ "model_type": "marketplace",
+ "secondary_types": [],
+ "brands": [],
+ "locations": null,
+ "evidence": [
+  {
+   "signal": "title",
+   "value": "Free classifieds site to sell and buy second-hand and new products including cars"
+  },
+  {
+   "signal": "has_post_listing",
+   "value": "True with 'Adauga anunt' add-listing CTA and create-account flow"
+  },
+  {
+   "signal": "url_patterns",
+   "value": "97 listing URLs vs 0 dealers indicates third-party classifieds structure"
+  },
+  {
+   "signal": "headings",
+   "value": "Auto moto with Masini de vanzare alongside Imobiliare, jobs and services shows general marketplace"
+  }
+ ]
+}

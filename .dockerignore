@@ -1,0 +1,12 @@
+.git
+.env
+*.db
+*.log
+__pycache__/
+.pytest_cache/
+.venv/
+web/node_modules/
+web/dist/
+data/snapshots/
+data/llm_v*/
+tests/

@@ -1,0 +1,44 @@
+{
+ "type": "dealer",
+ "confidence": 0.9,
+ "facts": {
+  "is_automotive_related": true,
+  "is_financial_institution": false,
+  "is_manufacturer_or_official_importer": false,
+  "hosts_third_party_listings": false,
+  "owns_vehicle_stock": true,
+  "sells_auto_parts_online": false
+ },
+ "model_type": "dealer",
+ "secondary_types": [],
+ "brands": [
+  "Audi",
+  "Volkswagen",
+  "Mazda",
+  "Volvo",
+  "MG Motor"
+ ],
+ "locations": null,
+ "evidence": [
+  {
+   "signal": "title",
+   "value": "New and used cars from stock or on order with warranty and verified history"
+  },
+  {
+   "signal": "navigation",
+   "value": "Catalog Auto with Audi, Volkswagen, Mazda, Volvo, MG Motor plus Service auto and insurance"
+  },
+  {
+   "signal": "headings",
+   "value": "Special stock offers for Volvo EX30, Mazda CX-30, XC40 etc with km and promo prices"
+  },
+  {
+   "signal": "sample_urls_from_sitemap",
+   "value": "/products/mazda-cx-60 and audi-rs5 product pages for individual vehicles"
+  },
+  {
+   "signal": "price_count",
+   "value": "56 per-item prices with km mentions indicating owned vehicle stock"
+  }
+ ]
+}

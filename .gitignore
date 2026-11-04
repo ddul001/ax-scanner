@@ -1,0 +1,38 @@
+# secrets / local state
+.env
+*.db
+__pycache__/
+*.pyc
+.pytest_cache/
+.venv/
+
+# regenerable data (python scripts/run_baseline.py --fetch)
+data/snapshots/
+data/llm_v*/
+data/llm/
+data/*.csv
+*.log
+web/node_modules/
+web/dist/
+
+# third-party reference material, not redistributed (see README)
+aap-v3.0-spec/
+AAP-3.0-*.md
+web/tsconfig.tsbuildinfo
+
+# demo video material (scripts/record_demo.py, make_voiceover.py, ...)
+recordings/
+docs/video/
+demo/voice/
+*.mp4
+*.webm
+*.mp3
+*.wav
+*.srt
+*.vtt
+*.bundle
+
+# internal helper notes, not part of the project
+HANDOFF-*.md
+PLAN-*.md
+claude-code-prompt-*.md

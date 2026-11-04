@@ -1,0 +1,40 @@
+{
+ "type": "dealer",
+ "confidence": 0.95,
+ "facts": {
+  "is_automotive_related": true,
+  "is_financial_institution": false,
+  "is_manufacturer_or_official_importer": false,
+  "hosts_third_party_listings": false,
+  "owns_vehicle_stock": true,
+  "sells_auto_parts_online": false
+ },
+ "model_type": "dealer",
+ "secondary_types": [],
+ "brands": [
+  "Mercedes-Benz",
+  "Audi",
+  "Volkswagen",
+  "XPENG",
+  "Honda"
+ ],
+ "locations": 11,
+ "evidence": [
+  {
+   "signal": "headings",
+   "value": "Brand portfolio with Discover stock for Mercedes-Benz, Audi, Volkswagen, XPENG and Honda plus Monthly Deals"
+  },
+  {
+   "signal": "sample_urls_from_sitemap",
+   "value": "Per-vehicle for-sale detail pages e.g. /vanzari-auto/mercedes-benz-clasa-b-b-180-d-64036.html"
+  },
+  {
+   "signal": "schema_types",
+   "value": "Includes AutoDealer, AutoRepair, OfferCatalog and Service types with 4 offers"
+  },
+  {
+   "signal": "has_test_drive",
+   "value": "True, offers test-drive booking and service booking for owned stock"
+  }
+ ]
+}

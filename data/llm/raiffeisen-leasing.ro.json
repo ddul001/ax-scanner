@@ -1,0 +1,34 @@
+{
+ "type": "finance",
+ "confidence": 0.65,
+ "facts": {
+  "is_automotive_related": false,
+  "is_financial_institution": true,
+  "is_manufacturer_or_official_importer": false,
+  "hosts_third_party_listings": false,
+  "owns_vehicle_stock": false,
+  "sells_auto_parts_online": false
+ },
+ "model_type": "finance",
+ "secondary_types": [],
+ "brands": [],
+ "locations": null,
+ "evidence": [
+  {
+   "signal": "title",
+   "value": "Title is 'Raiffeisen Leasing' indicating a leasing company"
+  },
+  {
+   "signal": "navigation",
+   "value": "Navigation links to Raiffeisen Bank agencies and banking terms"
+  },
+  {
+   "signal": "finance_hits",
+   "value": "3 finance-related hits detected"
+  },
+  {
+   "signal": "auto_hits",
+   "value": "No automotive keywords detected, auto_hits 0"
+  }
+ ]
+}

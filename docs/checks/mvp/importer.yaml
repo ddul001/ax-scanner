@@ -1,0 +1,23 @@
+type: importer
+depth: basic
+weights: {discovery: 15, identity: 15, data: 20, actions: 10, trust: 10, agent_ux: 20, protocol: 10}
+pages_max: 15
+checks:
+  - {id: disc.robots_ai,        layer: discovery, method: D,   severity: HIGH,     pass: "boți AI permiși pe modele + oferte + locator"}
+  - {id: disc.waf_ua,           layer: discovery, method: D,   severity: CRITICAL, pass: "UA agent = UA browser"}
+  - {id: disc.sitemap,          layer: discovery, method: D,   severity: MAJOR,    pass: "pagini model + oferte, lastmod < 30 zile"}
+  - {id: disc.llms_txt,         layer: discovery, method: D,   severity: MAJOR,    pass: "200, markdown, link-uri modele/oferte/dealeri"}
+  - {id: disc.no_js,            layer: discovery, method: D,   severity: HIGH,     pass: "preț de la + specs + listă dealeri în HTML brut"}
+  - {id: id.schema_org,         layer: identity,  method: D,   severity: HIGH,     pass: "Organization + Brand: name, logo, url, sameAs"}
+  - {id: id.contact,            layer: identity,  method: D,   severity: MAJOR,    pass: "contact central în text + contactPoint"}
+  - {id: mod.urls,              layer: data,      method: D,   severity: HIGH,     pass: "URL unic crawlabil per model"}
+  - {id: mod.schema_offer,      layer: data,      method: D,   severity: HIGH,     pass: "AggregateOffer lowPrice / Offer + validThrough"}
+  - {id: mod.fields,            layer: data,      method: D,   severity: HIGH,     pass: "preț de la, motorizări, putere, WLTP, garanție ≥ 80%"}
+  - {id: mod.price_readable,    layer: data,      method: D+V, severity: CRITICAL, pass: "preț în text, nu doar în bannere/imagini"}
+  - {id: net.locator,           layer: data,      method: D,   severity: CRITICAL, pass: "listă dealeri în HTML/JSON (nume, oraș, adresă, telefon), nu doar hartă JS"}
+  - {id: act.test_drive_route,  layer: actions,   method: D,   severity: HIGH,     pass: "test drive/configurator accesibil, rutează spre dealer"}
+  - {id: act.locator_search,    layer: actions,   method: D,   severity: MAJOR,    pass: "căutare dealer după oraș prin URL GET"}
+  - {id: trust.https,           layer: trust,     method: D,   severity: HIGH,     pass: "certificat valid + redirect"}
+  - {id: ux.j_dealer,           layer: agent_ux,  method: J,   severity: CRITICAL, pass: "cel mai apropiat dealer pentru modelul Y în {oraș} + contact"}
+  - {id: proto.aap_card,        layer: protocol,  method: P,   severity: CRITICAL, pass: "agent-card.json prezent; altfel 'not adopted' (0) + oportunitate"}
+deferred_v2: [disc.perf, disc.wellknown, id.official, id.same_as, id.lang, mod.schema_model, mod.price_final, net.schema_dealers, net.links, act.forms_semantic, act.webmcp, trust.cookie_wall, trust.injection, trust.gdpr, trust.offer_validity, ux.j_price, ux.j_compare, ux.j_act, ux.blockers, ux.agent_vs_human, proto.aap_version, proto.consistency, proto.mcp, proto.tools, proto.aap_aggregate, proto.search, proto.onboarding, proto.network_adoption, proto.eu_profile, proto.ucp]

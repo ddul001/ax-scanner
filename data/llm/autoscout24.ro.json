@@ -1,0 +1,38 @@
+{
+ "type": "marketplace",
+ "confidence": 0.97,
+ "facts": {
+  "is_automotive_related": true,
+  "is_financial_institution": false,
+  "is_manufacturer_or_official_importer": false,
+  "hosts_third_party_listings": true,
+  "owns_vehicle_stock": false,
+  "sells_auto_parts_online": false
+ },
+ "model_type": "marketplace",
+ "secondary_types": [],
+ "brands": [],
+ "locations": null,
+ "evidence": [
+  {
+   "signal": "title",
+   "value": "European car sales site for used and new vehicles - AutoScout24"
+  },
+  {
+   "signal": "headings",
+   "value": "Find used and new vehicles with top offers listing BMW, Mercedes-Benz, Audi, Nissan, Tesla examples"
+  },
+  {
+   "signal": "footer_text",
+   "value": "Car buying and selling in over 10 countries, part of AutoScout24 family"
+  },
+  {
+   "signal": "make_count",
+   "value": "48 makes detected with exhaustive A-Z brand list from Abarth to Zeekr"
+  },
+  {
+   "signal": "auto_hits",
+   "value": "77 automotive hits with 20 per-item prices and 32 km mentions"
+  }
+ ]
+}

@@ -1,0 +1,45 @@
+{
+ "type": "dealer",
+ "confidence": 0.95,
+ "facts": {
+  "is_automotive_related": true,
+  "is_financial_institution": false,
+  "is_manufacturer_or_official_importer": false,
+  "hosts_third_party_listings": false,
+  "owns_vehicle_stock": true,
+  "sells_auto_parts_online": false
+ },
+ "model_type": "dealer",
+ "secondary_types": [],
+ "brands": [
+  "Ford",
+  "Mercedes-Benz",
+  "Hyundai",
+  "BYD",
+  "Mitsubishi",
+  "KGM"
+ ],
+ "locations": null,
+ "evidence": [
+  {
+   "signal": "title",
+   "value": "New and used cars for sale - Auto service | Tiriac Auto, authorized multi-brand dealer"
+  },
+  {
+   "signal": "navigation",
+   "value": "Contains Auto noi, Auto rulate, Service, e-SHOP and Locatii sections"
+  },
+  {
+   "signal": "footer_text",
+   "value": "Lists showrooms and service in Oradea, Pitesti, Ploiesti, Timisoara for Ford, Mercedes-Benz, Hyundai, BYD, Mitsubishi, KGM"
+  },
+  {
+   "signal": "sample_urls_from_sitemap",
+   "value": "/auto-noi, /auto-rulate/comanda-autovehicul and /service-tiriac-auto indicate owned stock and service"
+  },
+  {
+   "signal": "has_post_listing",
+   "value": "False, no post-an-ad feature; 2303 offers are dealer's own stock with per-item prices and km"
+  }
+ ]
+}

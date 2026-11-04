@@ -1,0 +1,40 @@
+{
+ "type": "importer",
+ "confidence": 0.97,
+ "facts": {
+  "is_automotive_related": true,
+  "is_financial_institution": false,
+  "is_manufacturer_or_official_importer": true,
+  "hosts_third_party_listings": false,
+  "owns_vehicle_stock": false,
+  "sells_auto_parts_online": false
+ },
+ "model_type": "importer",
+ "secondary_types": [],
+ "brands": [
+  "Toyota"
+ ],
+ "locations": null,
+ "evidence": [
+  {
+   "signal": "title",
+   "value": "Official Toyota Romania site advertising 2026 model range"
+  },
+  {
+   "signal": "navigation",
+   "value": "Contains Cauta un dealer, Descopera gama, Programeaza test drive, Solicita oferta"
+  },
+  {
+   "signal": "has_dealer_locator",
+   "value": "Dealer locator is present"
+  },
+  {
+   "signal": "has_configurator",
+   "value": "Configurator is present"
+  },
+  {
+   "signal": "sample_urls_from_sitemap",
+   "value": "/new-cars/aygo-x/specifications and /dealers/sibiu pages show model and dealer structure"
+  }
+ ]
+}

@@ -1,0 +1,38 @@
+{
+ "type": "unsupported",
+ "confidence": 0.9,
+ "facts": {
+  "is_automotive_related": true,
+  "is_financial_institution": false,
+  "is_manufacturer_or_official_importer": false,
+  "hosts_third_party_listings": false,
+  "owns_vehicle_stock": false,
+  "sells_auto_parts_online": false
+ },
+ "model_type": "unsupported",
+ "secondary_types": [],
+ "brands": [],
+ "locations": null,
+ "evidence": [
+  {
+   "signal": "title",
+   "value": "Title is SERVICE AUTODOC Service auto Cluj, an auto service with phone contact"
+  },
+  {
+   "signal": "navigation",
+   "value": "Navigation lists repair services: engine repair, brake system, computerized diagnosis, ITP, wheel balancing"
+  },
+  {
+   "signal": "sample_urls_from_sitemap",
+   "value": "Sitemap URLs are service pages like /reglaj-directie/, /itp/, /piese-de-schimb/, no vehicle stock pages"
+  },
+  {
+   "signal": "has_service_booking",
+   "value": "Has online service booking for repairs, no test-drive or vehicle sales flow"
+  },
+  {
+   "signal": "cart_hits",
+   "value": "Zero cart hits, zero prices and zero product schemas, no online parts checkout"
+  }
+ ]
+}

@@ -1,0 +1,32 @@
+type: marketplace
+depth: basic
+weights: {discovery: 20, identity: 10, data: 25, actions: 10, trust: 10, agent_ux: 20, protocol: 5}
+pages_max: 15
+checks:
+  # Discovery
+  - {id: disc.robots_ai,        layer: discovery, method: D,   severity: HIGH,     pass: "boți AI permiși pe căutare + pagini anunț (fără Disallow pe rutele de căutare/anunț)"}
+  - {id: disc.waf_ua,           layer: discovery, method: D,   severity: CRITICAL, pass: "UA agent = UA browser pe căutare + anunț (status + conținut ±10%); 403/429/challenge = fail"}
+  - {id: disc.sitemap,          layer: discovery, method: D,   severity: MAJOR,    pass: "sitemap (index) cu URL-uri de anunțuri, lastmod < 7 zile pe ≥ 80% din eșantion"}
+  - {id: disc.no_js,            layer: discovery, method: D,   severity: HIGH,     pass: "listă rezultate + preț + specs în HTML brut (raport ≥ 0,7)"}
+  - {id: lst.search_urls,       layer: discovery, method: D,   severity: CRITICAL, pass: "filtre (marcă, preț max, km max, combustibil, locație) ca parametri GET/path; URL-ul filtrat returnează rezultate în HTML brut, nu doar XHR/JS"}
+  # Identity
+  - {id: id.seller_type,        layer: identity,  method: D+L, severity: HIGH,     pass: "tip vânzător (persoană fizică / profesionist) afișat pe ≥ 90% din anunțuri; profesionist = nume + link către pagina vânzătorului"}
+  # Data
+  - {id: lst.listing_urls,      layer: data,      method: D,   severity: CRITICAL, pass: "URL unic, stabil, crawlabil (<a href>) per anunț, găsit din pagina de rezultate"}
+  - {id: lst.pagination,        layer: data,      method: D,   severity: HIGH,     pass: "paginile 2 și 3 accesibile prin link/param GET (rel=next sau ?page=), rezultate diferite, fără scroll infinit obligatoriu"}
+  - {id: lst.schema,            layer: data,      method: D,   severity: HIGH,     pass: "Car/Vehicle + Offer (price, priceCurrency, availability) pe ≥ 80% anunțuri; ItemList pe pagina de rezultate"}
+  - {id: lst.fields,            layer: data,      method: D,   severity: HIGH,     pass: "preț, monedă, km, an, combustibil, cutie, locație, poze + VIN sau ID anunț pe ≥ 80% anunțuri"}
+  - {id: lst.price_readable,    layer: data,      method: D+V, severity: CRITICAL, pass: "preț ca text pe ≥ 90% din anunțuri și carduri de rezultate; preț în imagine / «sună pentru preț» = fail"}
+  - {id: lst.freshness,         layer: data,      method: D,   severity: MAJOR,    pass: "dată publicare/actualizare vizibilă (sau datePosted/lastmod); anunț expirat = 404/410 sau availability SoldOut, nu 200 cu conținut vechi"}
+  # Actions
+  - {id: act.contact_no_login,  layer: actions,   method: D,   severity: HIGH,     pass: "pe anunț: telefon/mesaj/formular vizibil fără login SAU gate declarat explicit în text; fără CAPTCHA blocant (fără submit)"}
+  # Trust
+  - {id: trust.https,           layer: trust,     method: D,   severity: HIGH,     pass: "certificat valid + redirect HTTP→HTTPS"}
+  - {id: trust.scam_signals,    layer: trust,     method: D+L, severity: MAJOR,    pass: "pe anunț: insignă vânzător verificat/profesionist și «raportează anunț»; ≥ 1 dintre ele pe ≥ 80% din eșantion"}
+  - {id: trust.automation_terms, layer: trust,    method: L,   severity: MAJOR,    pass: "termenii/robots precizează accesul automat (permis / interzis / pe licență); nicio mențiune = warn, interdicție totală = fail"}
+  # Agent UX
+  - {id: ux.j_find,             layer: agent_ux,  method: J,   severity: CRITICAL, pass: "găsește diesel rulat < 15.000 €, < 100.000 km, în Cluj și returnează primul anunț cu URL, preț, km, an corecte"}
+  # Protocol (doar detectare)
+  - {id: proto.aap_detect,      layer: protocol,  method: P,   severity: INFO,     pass: "agent-card.json / MCP public: prezent da/nu, doar raportat (AAP nu se aplică marketplace-urilor)"}
+deferred_v2: [disc.llms_txt, disc.perf, disc.wellknown, id.schema_org, id.nap, id.lang, lst.schema_seller, lst.price_consistency, lst.price_final, lst.dedupe, lst.sort_urls, lst.saved_search_alerts, lst.feed_api, lst.images_alt, lst.features, lst.price_rating, act.forms_semantic, act.favorite_no_login, act.webmcp, trust.cookie_wall, trust.injection, trust.gdpr, trust.review_ratings, trust.seller_history, ux.j_contact, ux.j_compare, ux.blockers, ux.agent_vs_human, proto.mcp, proto.aap_aggregate, proto.ucp]
+not_applicable: [proto.aap_card]   # AAP = dealer/importator; marketplace doar detectare INFO

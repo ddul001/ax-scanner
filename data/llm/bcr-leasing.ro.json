@@ -1,0 +1,34 @@
+{
+ "type": "finance",
+ "confidence": 0.95,
+ "facts": {
+  "is_automotive_related": true,
+  "is_financial_institution": true,
+  "is_manufacturer_or_official_importer": false,
+  "hosts_third_party_listings": false,
+  "owns_vehicle_stock": false,
+  "sells_auto_parts_online": false
+ },
+ "model_type": "finance",
+ "secondary_types": [],
+ "brands": [],
+ "locations": null,
+ "evidence": [
+  {
+   "signal": "title",
+   "value": "Title is BCR Leasing Banca Comerciala Romana"
+  },
+  {
+   "signal": "headings",
+   "value": "Headings advertise auto financial leasing 100 percent online for microenterprises"
+  },
+  {
+   "signal": "finance_hits",
+   "value": "2 finance hits related to leasing offers"
+  },
+  {
+   "signal": "auto_hits",
+   "value": "2 auto hits for auto leasing, no vehicle stock or VINs"
+  }
+ ]
+}

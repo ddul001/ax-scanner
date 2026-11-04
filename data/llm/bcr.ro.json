@@ -1,0 +1,34 @@
+{
+ "type": "finance",
+ "confidence": 0.98,
+ "facts": {
+  "is_automotive_related": false,
+  "is_financial_institution": true,
+  "is_manufacturer_or_official_importer": false,
+  "hosts_third_party_listings": false,
+  "owns_vehicle_stock": false,
+  "sells_auto_parts_online": false
+ },
+ "model_type": "finance",
+ "secondary_types": [],
+ "brands": [],
+ "locations": null,
+ "evidence": [
+  {
+   "signal": "title",
+   "value": "BCR personal banking title lists online account, cards, personal and mortgage loans, savings and investments"
+  },
+  {
+   "signal": "headings",
+   "value": "Headings for George account 3.0, George loan, term deposit BCR and exchange rates, no vehicle models"
+  },
+  {
+   "signal": "finance_hits",
+   "value": "7 finance hits with 0 auto hits and 0 vehicle schemas"
+  },
+  {
+   "signal": "schema_types",
+   "value": "Schemas include FinancialProduct, Organization and Offer, with no Vehicle type"
+  }
+ ]
+}

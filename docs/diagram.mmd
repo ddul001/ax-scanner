@@ -1,0 +1,33 @@
+flowchart TD
+  U[User: URL + locale] --> API[POST /api/scans]
+  API --> J[Scan job - BackgroundTask]
+  J --> S0[Step 0: fetch homepage + sitemap + nav]
+  S0 --> CL[Muse Spark classify: dealer / importer / ecommerce]
+  CL -->|confidence < 0.7| UC{User confirms type}
+  UC --> T
+  CL -->|ok| T[Load site_type_template]
+  T --> PS[Page selector: URL patterns + stable sample ≤15]
+  PS --> C[Crawler]
+  C -->|JS-heavy| PW[Playwright render + screenshots]
+  C --> DC[Deterministic checks per type]
+  PW --> DC
+  C --> MS[Muse Spark page analysis - structured]
+  PW --> MV[Muse Spark vision: price-in-image]
+  T --> VP[Prompt panel per type + locale]
+  VP --> G[Muse Spark search-grounded ×3]
+  VP --> X[External engine ×3 - optional]
+  G --> P[Parse: mentioned / rank / citations]
+  X --> P
+  DC --> R[Readiness score]
+  MS --> R
+  MV --> R
+  P --> V[Visibility score]
+  R --> AX[AX Score = 0.6 R + 0.4 V]
+  V --> AX
+  AX --> I[Insights: found → impact → fastest win]
+  I --> F[Fix generators per type: JSON-LD, FAQ, llms.txt, robots]
+  F --> AP{User approves?}
+  AP -->|yes| E[Export bundle]
+  AP -->|no| F
+  E --> RS[Re-scan] --> J
+  AX --> LB[Leaderboard]

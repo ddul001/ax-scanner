@@ -1,0 +1,353 @@
+{
+ "type": "ecommerce",
+ "ax_score": 100.0,
+ "visibility": {
+  "score": 100.0,
+  "prompts": 4,
+  "runs": 12,
+  "mentioned": 12,
+  "source": "simulat (fixture)"
+ },
+ "readiness": 100.0,
+ "grade": "A",
+ "layers": {
+  "Discovery": 100.0,
+  "Identity": 100.0,
+  "Data": 100.0,
+  "Actions": 100.0,
+  "Trust": 100.0,
+  "Agent UX": 100.0,
+  "Protocol": 100.0
+ },
+ "checks": [
+  {
+   "id": "disc.robots_ai",
+   "layer": "Discovery",
+   "sev": "HIGH",
+   "pass": "GPTBot, ChatGPT-User, OAI-SearchBot, ClaudeBot, Claude-User, PerplexityBot, Google-Extended, Applebot-Extended, Meta-ExternalAgent permiși",
+   "status": "pass",
+   "evidence": "9/9 boți cu Allow: / · lipsă: []"
+  },
+  {
+   "id": "disc.waf_ua",
+   "layer": "Discovery",
+   "sev": "CRITICAL",
+   "pass": "același status + conținut (±10%) ca UA browser",
+   "status": "pass",
+   "evidence": "9 UA comparate cu browser: status 200, dimensiune 22418 B ±10% · diferențe: []"
+  },
+  {
+   "id": "disc.sitemap",
+   "layer": "Discovery",
+   "sev": "MAJOR",
+   "pass": "produse incluse, `lastmod` < 7 zile",
+   "status": "pass",
+   "evidence": "6 URL-uri, 2 pagini cheie (/p/), cel mai recent lastmod acum 0 zile (prag 7)"
+  },
+  {
+   "id": "disc.llms_txt",
+   "layer": "Discovery",
+   "sev": "MAJOR",
+   "pass": "200, markdown, link-uri categorii / politici / contact",
+   "status": "pass",
+   "evidence": "llms.txt 648 B, titlu H1, 9 link-uri"
+  },
+  {
+   "id": "disc.no_js",
+   "layer": "Discovery",
+   "sev": "HIGH",
+   "pass": "preț + stoc în HTML brut",
+   "status": "pass",
+   "evidence": "prețuri găsite în HTML brut: ['189,90', '49,90'] · raport text brut/randat 1.0"
+  },
+  {
+   "id": "disc.perf",
+   "layer": "Discovery",
+   "sev": "MINOR",
+   "pass": "TTFB < 800 ms, pagină < 3 MB",
+   "status": "pass",
+   "evidence": "TTFB 4 ms (local), pagină 21.9 KB"
+  },
+  {
+   "id": "disc.wellknown",
+   "layer": "Discovery",
+   "sev": "INFO",
+   "pass": "—",
+   "status": "pass",
+   "evidence": "api-catalog RFC 9727 cu linkset"
+  },
+  {
+   "id": "id.schema_org",
+   "layer": "Identity",
+   "sev": "HIGH",
+   "pass": "name, logo, url, contactPoint",
+   "status": "pass",
+   "evidence": "OnlineStore: name, logo, url, contactPoint"
+  },
+  {
+   "id": "id.company",
+   "layer": "Identity",
+   "sev": "MAJOR",
+   "pass": "CUI/CIF, adresă, ANPC/SOL (RO) sau aviso legal (ES)",
+   "status": "pass",
+   "evidence": "CUI, ANPC, SAL în text; fără link ODR închis"
+  },
+  {
+   "id": "id.same_as",
+   "layer": "Identity",
+   "sev": "MINOR",
+   "pass": "social / marketplace-uri",
+   "status": "pass",
+   "evidence": "sameAs ≥ 2 profiluri"
+  },
+  {
+   "id": "id.lang",
+   "layer": "Identity",
+   "sev": "MINOR",
+   "pass": "`lang` corect RO/ES; hreflang dacă e multilingv",
+   "status": "pass",
+   "evidence": "lang=\"ro\" + hreflang ro/es"
+  },
+  {
+   "id": "prod.urls",
+   "layer": "Data",
+   "sev": "CRITICAL",
+   "pass": "URL unic, crawlabil",
+   "status": "pass",
+   "evidence": "2 pagini produs legate"
+  },
+  {
+   "id": "prod.schema_product",
+   "layer": "Data",
+   "sev": "HIGH",
+   "pass": "name, image, brand, sku / gtin pe ≥ 80%",
+   "status": "pass",
+   "evidence": "Product: name, image, brand, sku, gtin"
+  },
+  {
+   "id": "prod.schema_offer",
+   "layer": "Data",
+   "sev": "HIGH",
+   "pass": "price, priceCurrency, availability",
+   "status": "pass",
+   "evidence": "Offer complet"
+  },
+  {
+   "id": "prod.fields",
+   "layer": "Data",
+   "sev": "HIGH",
+   "pass": "preț, SKU, GTIN, brand, stoc, cost / termen livrare, poze ≥ 80%",
+   "status": "pass",
+   "evidence": "preț, SKU, GTIN, brand, stoc, livrare în text"
+  },
+  {
+   "id": "prod.price_readable",
+   "layer": "Data",
+   "sev": "CRITICAL",
+   "pass": "în text / JSON, nu doar JS / imagine",
+   "status": "pass",
+   "evidence": "prețuri în text: ['189,90', '49,90']"
+  },
+  {
+   "id": "prod.price_consistency",
+   "layer": "Data",
+   "sev": "HIGH",
+   "pass": "JSON-LD = preț vizibil",
+   "status": "pass",
+   "evidence": "JSON-LD = text"
+  },
+  {
+   "id": "prod.policies_schema",
+   "layer": "Data",
+   "sev": "MAJOR",
+   "pass": "MerchantReturnPolicy + shippingDetails",
+   "status": "pass",
+   "evidence": "MerchantReturnPolicy + shippingDetails"
+  },
+  {
+   "id": "prod.search_urls",
+   "layer": "Data",
+   "sev": "MAJOR",
+   "pass": "URL-uri GET parametrizate",
+   "status": "pass",
+   "evidence": "căutare GET parametrizată"
+  },
+  {
+   "id": "prod.rating",
+   "layer": "Data",
+   "sev": "MINOR",
+   "pass": "doar unde există recenzii reale",
+   "status": "pass",
+   "evidence": "AggregateRating cu recenzii reale atașate"
+  },
+  {
+   "id": "prod.feed",
+   "layer": "Data",
+   "sev": "MINOR",
+   "pass": "descoperibil",
+   "status": "pass",
+   "evidence": "feed XML"
+  },
+  {
+   "id": "act.add_to_cart",
+   "layer": "Actions",
+   "sev": "HIGH",
+   "pass": "funcțional fără login",
+   "status": "pass",
+   "evidence": "formular „Adaugă în coș” fără login"
+  },
+  {
+   "id": "act.guest_checkout",
+   "layer": "Actions",
+   "sev": "HIGH",
+   "pass": "se ajunge la pasul de plată, fără CAPTCHA blocant",
+   "status": "pass",
+   "evidence": "checkout fără cont, fără parolă, fără CAPTCHA"
+  },
+  {
+   "id": "act.forms_semantic",
+   "layer": "Actions",
+   "sev": "MAJOR",
+   "pass": "`label`, `name`, `autocomplete`, câmpuri obligatorii marcate",
+   "status": "pass",
+   "evidence": "4 formulare, 19 câmpuri · probleme: []"
+  },
+  {
+   "id": "act.contact",
+   "layer": "Actions",
+   "sev": "MAJOR",
+   "pass": "email / telefon / chat accesibil",
+   "status": "pass",
+   "evidence": "tel: + mailto: + formular"
+  },
+  {
+   "id": "act.webmcp",
+   "layer": "Actions",
+   "sev": "INFO",
+   "pass": "`search_products`, `get_product`, `add_to_cart`",
+   "status": "pass",
+   "evidence": "tool-uri WebMCP declarate: ['search_products', 'get_product', 'add_to_cart'] · lipsă: []"
+  },
+  {
+   "id": "trust.https",
+   "layer": "Trust",
+   "sev": "HIGH",
+   "pass": "certificat valid, redirect HTTP → HTTPS",
+   "status": "pass",
+   "evidence": "TLS verificat (certificat de test, CA local) + HSTS"
+  },
+  {
+   "id": "trust.cookie_wall",
+   "layer": "Trust",
+   "sev": "MAJOR",
+   "pass": "conținut accesibil fără interacțiune",
+   "status": "pass",
+   "evidence": "elemente modale/overlay: 0"
+  },
+  {
+   "id": "trust.injection",
+   "layer": "Trust",
+   "sev": "MAJOR",
+   "pass": "fără text ascuns cu instrucțiuni pentru agenți",
+   "status": "pass",
+   "evidence": "text ascuns: 0 fragmente · tipare de injection: 0"
+  },
+  {
+   "id": "trust.gdpr",
+   "layer": "Trust",
+   "sev": "MAJOR",
+   "pass": "text de consimțământ + link politică",
+   "status": "pass",
+   "evidence": "2 formulare cu date personale, toate cu checkbox obligatoriu + link politică"
+  },
+  {
+   "id": "trust.policies_text",
+   "layer": "Trust",
+   "sev": "MAJOR",
+   "pass": "livrare / retur / garanție cu termene și costuri",
+   "status": "pass",
+   "evidence": "livrare / retur / garanție cu termene și costuri"
+  },
+  {
+   "id": "ux.j_find",
+   "layer": "Agent UX",
+   "sev": "CRITICAL",
+   "pass": "produs real, date corecte",
+   "status": "pass",
+   "evidence": "pași: / → /cauta?category=frane&price_max=200&in_stock=1 · răspuns: PF200 · ground truth: PF200"
+  },
+  {
+   "id": "ux.j_total",
+   "layer": "Agent UX",
+   "sev": "HIGH",
+   "pass": "total corect",
+   "status": "pass",
+   "evidence": "pași: /p/placute-frana-pf200 · răspuns: 209,80 lei · ground truth: 209,80 lei"
+  },
+  {
+   "id": "ux.j_policy",
+   "layer": "Agent UX",
+   "sev": "MAJOR",
+   "pass": "corect vs pagina de retur",
+   "status": "pass",
+   "evidence": "pași: /retur · răspuns: (30, True) · ground truth: (30, True)"
+  },
+  {
+   "id": "ux.j_act",
+   "layer": "Agent UX",
+   "sev": "HIGH",
+   "pass": "pasul de plată atins",
+   "status": "pass",
+   "evidence": "pași: /p/placute-frana-pf200 → /cos → /checkout → STOP înainte de plată · răspuns: ['address', 'city', 'consent', 'email', 'name', 'phone', 'postal_code', 'terms'] · ground truth: ['address', 'city', 'consent', 'email', 'name', 'phone', 'postal_code', 'terms']"
+  },
+  {
+   "id": "ux.blockers",
+   "layer": "Agent UX",
+   "sev": "MAJOR",
+   "pass": "0 popup / CAPTCHA / 403 / conținut doar JS",
+   "status": "pass",
+   "evidence": "0 CAPTCHA, 0 overlay, 0 răspunsuri 403 pentru UA de agent"
+  },
+  {
+   "id": "ux.agent_vs_human",
+   "layer": "Agent UX",
+   "sev": "MAJOR",
+   "pass": "≥ 90% din informația vizibilă extrasă",
+   "status": "pass",
+   "evidence": "agentul primește același HTML ca omul (fără conținut injectat prin JS, fără prețuri în imagini): 100% din text"
+  },
+  {
+   "id": "proto.mcp_public",
+   "layer": "Protocol",
+   "sev": "MAJOR",
+   "pass": "declarat (llms.txt / well-known); `tools/list` OK",
+   "status": "pass",
+   "evidence": "MCP de catalog declarat în llms.txt + tools/list"
+  },
+  {
+   "id": "proto.ucp",
+   "layer": "Protocol",
+   "sev": "INFO",
+   "pass": "`/.well-known/ucp` valid",
+   "status": "pass",
+   "evidence": "/.well-known/ucp prezent"
+  },
+  {
+   "id": "proto.checkout_protocol",
+   "layer": "Protocol",
+   "sev": "INFO",
+   "pass": "declarat",
+   "status": "pass",
+   "evidence": "checkout agentic declarat (UCP, ACP), cu confirmarea utilizatorului"
+  },
+  {
+   "id": "proto.aap",
+   "layer": "Protocol",
+   "sev": "na",
+   "pass": "—",
+   "status": "na",
+   "evidence": "nu se aplică"
+  }
+ ],
+ "critical_fail": []
+}

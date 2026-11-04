@@ -1,0 +1,32 @@
+type: dealer
+depth: full
+weights: {discovery: 15, identity: 10, data: 20, actions: 15, trust: 10, agent_ux: 20, protocol: 10}
+pages_max: 15
+checks:
+  # Discovery
+  - {id: disc.robots_ai,        layer: discovery, method: D,   severity: HIGH,     pass: "boți AI permiși pe stoc + service"}
+  - {id: disc.waf_ua,           layer: discovery, method: D,   severity: CRITICAL, pass: "UA agent = UA browser (status + conținut ±10%)"}
+  - {id: disc.sitemap,          layer: discovery, method: D,   severity: MAJOR,    pass: "VDP-uri în sitemap, lastmod < 7 zile"}
+  - {id: disc.llms_txt,         layer: discovery, method: D,   severity: MAJOR,    pass: "200, markdown, link-uri stoc/service/contact"}
+  - {id: disc.no_js,            layer: discovery, method: D,   severity: HIGH,     pass: "preț + specs în HTML brut (raport ≥ 0,7)"}
+  # Identity
+  - {id: id.schema_dealer,      layer: identity,  method: D,   severity: HIGH,     pass: "AutoDealer: name, address, geo, telephone, openingHours, brand"}
+  - {id: id.nap,                layer: identity,  method: D,   severity: MAJOR,    pass: "NAP identic pe pagini + JSON-LD"}
+  # Data
+  - {id: inv.vdp_urls,          layer: data,      method: D,   severity: CRITICAL, pass: "URL unic crawlabil per vehicul"}
+  - {id: inv.schema_vehicle,    layer: data,      method: D,   severity: HIGH,     pass: "Car/Vehicle pe ≥ 80% VDP"}
+  - {id: inv.schema_offer,      layer: data,      method: D,   severity: HIGH,     pass: "Offer: price, priceCurrency, availability, itemCondition"}
+  - {id: inv.fields,            layer: data,      method: D,   severity: HIGH,     pass: "VIN, km, an, combustibil, cutie, putere, poze ≥ 80%"}
+  - {id: inv.price_readable,    layer: data,      method: D+V, severity: CRITICAL, pass: "preț text pe ≥ 90% VDP; preț în imagine = fail"}
+  - {id: inv.price_consistency, layer: data,      method: D,   severity: HIGH,     pass: "JSON-LD = preț vizibil"}
+  # Actions
+  - {id: act.test_drive,        layer: actions,   method: D,   severity: HIGH,     pass: "accesibil din VDP, fără CAPTCHA blocant"}
+  - {id: act.forms_semantic,    layer: actions,   method: D,   severity: MAJOR,    pass: "label, name, autocomplete, required"}
+  # Trust
+  - {id: trust.https,           layer: trust,     method: D,   severity: HIGH,     pass: "certificat valid + redirect HTTP→HTTPS"}
+  # Agent UX
+  - {id: ux.j_find,             layer: agent_ux,  method: J,   severity: CRITICAL, pass: "găsește SUV hibrid rulat < 30k €: VIN, km, preț corecte"}
+  - {id: ux.j_act,              layer: agent_ux,  method: J,   severity: HIGH,     pass: "găsește formularul test drive și listează câmpurile (fără submit)"}
+  # Protocol
+  - {id: proto.aap_card,        layer: protocol,  method: P,   severity: CRITICAL, pass: "/.well-known/agent-card.json prezent + extensie AAP; altfel 'not adopted' (0) + oportunitate"}
+deferred_v2: [disc.perf, disc.wellknown, id.locations, id.same_as, id.lang, inv.price_final, inv.freshness, inv.search_urls, inv.features, inv.feed, inv.marketplace, act.service_booking, act.quote_contact, act.webmcp, trust.cookie_wall, trust.injection, trust.gdpr, trust.offer_validity, ux.j_understand, ux.j_price, ux.blockers, ux.agent_vs_human, proto.aap_version, proto.poppy, proto.consistency, proto.mcp, proto.tools, proto.search, proto.vehicle, proto.pagination, proto.unsupported_filter, proto.lead_schema, proto.onboarding, proto.eu_profile, proto.ucp]

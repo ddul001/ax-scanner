@@ -1,0 +1,36 @@
+{
+ "type": "importer",
+ "confidence": 0.95,
+ "facts": {
+  "is_automotive_related": true,
+  "is_financial_institution": false,
+  "is_manufacturer_or_official_importer": true,
+  "hosts_third_party_listings": false,
+  "owns_vehicle_stock": false,
+  "sells_auto_parts_online": false
+ },
+ "model_type": "importer",
+ "secondary_types": [],
+ "brands": [
+  "Volkswagen"
+ ],
+ "locations": null,
+ "evidence": [
+  {
+   "signal": "title",
+   "value": "Volkswagen Romania official site for models and special offers"
+  },
+  {
+   "signal": "headings",
+   "value": "Model range includes Polo, Golf, T-Roc, ID.4, ID.7, Tiguan, Tayron"
+  },
+  {
+   "signal": "has_configurator",
+   "value": "Vehicle configurator present"
+  },
+  {
+   "signal": "footer_text",
+   "value": "Copyright Porsche Romania, official importer of Volkswagen"
+  }
+ ]
+}

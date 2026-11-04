@@ -1,0 +1,43 @@
+{
+ "type": "dealer",
+ "confidence": 0.95,
+ "facts": {
+  "is_automotive_related": true,
+  "is_financial_institution": false,
+  "is_manufacturer_or_official_importer": false,
+  "hosts_third_party_listings": false,
+  "owns_vehicle_stock": true,
+  "sells_auto_parts_online": false
+ },
+ "model_type": "dealer",
+ "secondary_types": [],
+ "brands": [
+  "Dacia",
+  "Toyota",
+  "Audi",
+  "Nissan"
+ ],
+ "locations": 170,
+ "evidence": [
+  {
+   "signal": "title",
+   "value": "Claims more than 170 second-hand dealerships and 23,400 occasion vehicles in Spain"
+  },
+  {
+   "signal": "has_dealer_locator",
+   "value": "True with search by province and dealership across Spain"
+  },
+  {
+   "signal": "url_patterns",
+   "value": "67 stock-type URLs indicating owned inventory pages"
+  },
+  {
+   "signal": "price_count",
+   "value": "16 per-item prices with mileage and year e.g. 2018 67,006 km at 9,490 EUR"
+  },
+  {
+   "signal": "schema_types",
+   "value": "Includes AutoDealer schema with PostalAddress and WebSite"
+  }
+ ]
+}

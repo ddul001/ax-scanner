@@ -1,0 +1,49 @@
+{
+ "type": "dealer",
+ "confidence": 0.96,
+ "facts": {
+  "is_automotive_related": true,
+  "is_financial_institution": false,
+  "is_manufacturer_or_official_importer": false,
+  "hosts_third_party_listings": false,
+  "owns_vehicle_stock": true,
+  "sells_auto_parts_online": false
+ },
+ "model_type": "dealer",
+ "secondary_types": [],
+ "brands": [
+  "Volkswagen",
+  "Mercedes-Benz",
+  "Audi",
+  "BMW",
+  "Skoda",
+  "Ford",
+  "Opel",
+  "Hyundai",
+  "Toyota",
+  "Seat",
+  "Fiat",
+  "Peugeot",
+  "Citroen",
+  "Nissan"
+ ],
+ "locations": null,
+ "evidence": [
+  {
+   "signal": "schema_org_summary",
+   "value": "Autohero GmbH describes itself as Europe's largest independent dealer with 5000+ used cars of all makes, inspected and reconditioned"
+  },
+  {
+   "signal": "title",
+   "value": "Auto kaufen with 9500+ inspected used cars, 1 year warranty and 21 days money-back guarantee"
+  },
+  {
+   "signal": "navigation",
+   "value": "Buy car, trade-in, sell car directly, financing offer, warranty, locations"
+  },
+  {
+   "signal": "headings",
+   "value": "Search by popular models and brands, reasons for Autohero, finance your car"
+  }
+ ]
+}

@@ -1,0 +1,31 @@
+type: finance
+depth: basic
+weights: {discovery: 15, identity: 15, data: 25, actions: 15, trust: 10, agent_ux: 20, protocol: 0}
+pages_max: 15
+checks:
+  # Discovery
+  - {id: disc.robots_ai,        layer: discovery, method: D,   severity: HIGH,     pass: "boți AI permiși pe pagini de produs + calculator + contact"}
+  - {id: disc.waf_ua,           layer: discovery, method: D,   severity: CRITICAL, pass: "UA agent = UA browser (status + conținut ±10%); 403/429/challenge = fail"}
+  - {id: disc.sitemap,          layer: discovery, method: D,   severity: MAJOR,    pass: "paginile de produs (leasing/renting/credit) în sitemap, lastmod < 90 zile"}
+  - {id: disc.llms_txt,         layer: discovery, method: D,   severity: MAJOR,    pass: "200, markdown, link-uri produse/calculator/contact/documente legale"}
+  - {id: disc.no_js,            layer: discovery, method: D,   severity: HIGH,     pass: "dobândă/DAE/rată/avans în HTML brut (text brut / randat ≥ 0,7)"}
+  # Identity
+  - {id: id.schema_org,         layer: identity,  method: D,   severity: HIGH,     pass: "Organization/BankOrCreditUnion/FinancialService: name, url, logo, address, telephone; FAQPage pe paginile cu FAQ (bonus, lipsa = warn)"}
+  - {id: id.regulatory,         layer: identity,  method: L,   severity: HIGH,     pass: "denumire legală + CUI/CIF + nr. Registrul BNR (IFN/bancă) sau Banco de España + adresă sediu, în footer/pagină legală/JSON-LD"}
+  - {id: id.contact,            layer: identity,  method: D,   severity: MAJOR,    pass: "≥ 2 canale (telefon, email, formular, adresă) în text + contactPoint"}
+  # Data
+  - {id: fin.product_urls,      layer: data,      method: D,   severity: CRITICAL, pass: "URL unic crawlabil per produs (leasing financiar/operațional, renting, credit auto, oferte din catalog), găsit din navigare"}
+  - {id: fin.cost_text,         layer: data,      method: D+V, severity: CRITICAL, pass: "rata lunară SAU dobânda + DAE/TAE ca text pe ≥ 80% din paginile de produs; valori doar în imagine/banner = fail"}
+  - {id: fin.terms_fields,      layer: data,      method: D+L, severity: HIGH,     pass: "durată (luni), avans minim, valoare reziduală (leasing/renting), comisioane, monedă, eligibilitate: ≥ 4 din 6 pe ≥ 80% din produse"}
+  - {id: fin.schema_product,    layer: data,      method: D,   severity: HIGH,     pass: "FinancialProduct/LoanOrCredit/Offer (interestRate, annualPercentageRate, loanTerm, amount, priceCurrency) pe ≥ 50% din produse; parțial = warn"}
+  # Actions
+  - {id: act.calculator,        layer: actions,   method: D,   severity: HIGH,     pass: "calculator/simulator accesibil din produs; câmpuri (preț, avans, durată) cu label + name, parametrizabile prin URL GET SAU form semantic; fără submit"}
+  - {id: act.forms_semantic,    layer: actions,   method: D,   severity: MAJOR,    pass: "formular cerere ofertă: label, name, autocomplete, required pe toate câmpurile (doar analiză, fără submit)"}
+  # Trust
+  - {id: trust.https,           layer: trust,     method: D,   severity: HIGH,     pass: "certificat valid + redirect HTTP→HTTPS"}
+  - {id: trust.gdpr_consent,    layer: trust,     method: L,   severity: MAJOR,    pass: "lângă formular: checkbox de consimțământ neprebifat + link politică de confidențialitate + scop declarat"}
+  # Agent UX
+  - {id: ux.j_cost,             layer: agent_ux,  method: J,   severity: CRITICAL, pass: "pentru o mașină de 25.000 € pe 48 luni: găsește rata lunară, DAE și avansul necesar, corecte față de pagină"}
+  - {id: ux.j_calc,             layer: agent_ux,  method: J,   severity: HIGH,     pass: "găsește calculatorul și listează câmpurile și limitele lor (fără submit)"}
+deferred_v2: [disc.perf, disc.wellknown, id.same_as, id.lang, id.branches, fin.rep_example, fin.price_consistency, fin.fees_total_cost, fin.catalogue_vehicles, fin.rate_freshness, fin.docs_pdf, fin.eligibility_machine, fin.feed, act.calculator_compare, act.webmcp, act.contact_hours, trust.cookie_wall, trust.injection, trust.risk_warning, trust.complaints_odr, trust.reviews, ux.j_compare, ux.j_eligibility, ux.blockers, ux.agent_vs_human, proto.mcp_public, proto.ucp]
+not_applicable: [proto.aap]   # AAP acoperă doar vehicule/dealeri; protocol = 0, nu are check-uri

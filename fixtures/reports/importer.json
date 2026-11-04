@@ -1,0 +1,401 @@
+{
+ "type": "importer",
+ "ax_score": 100.0,
+ "visibility": {
+  "score": 100.0,
+  "prompts": 4,
+  "runs": 12,
+  "mentioned": 12,
+  "source": "simulat (fixture)"
+ },
+ "readiness": 100.0,
+ "grade": "A",
+ "layers": {
+  "Discovery": 100.0,
+  "Identity": 100.0,
+  "Data": 100.0,
+  "Actions": 100.0,
+  "Trust": 100.0,
+  "Agent UX": 100.0,
+  "Protocol": 100.0
+ },
+ "checks": [
+  {
+   "id": "disc.robots_ai",
+   "layer": "Discovery",
+   "sev": "HIGH",
+   "pass": "GPTBot, ChatGPT-User, OAI-SearchBot, ClaudeBot, Claude-User, PerplexityBot, Google-Extended, Applebot-Extended, Meta-ExternalAgent permiși",
+   "status": "pass",
+   "evidence": "9/9 boți cu Allow: / · lipsă: []"
+  },
+  {
+   "id": "disc.waf_ua",
+   "layer": "Discovery",
+   "sev": "CRITICAL",
+   "pass": "același status + conținut (±10%) ca UA browser",
+   "status": "pass",
+   "evidence": "9 UA comparate cu browser: status 200, dimensiune 31703 B ±10% · diferențe: []"
+  },
+  {
+   "id": "disc.sitemap",
+   "layer": "Discovery",
+   "sev": "MAJOR",
+   "pass": "pagini model + oferte, `lastmod` < 30 zile",
+   "status": "pass",
+   "evidence": "5 URL-uri, 2 pagini cheie (/modele/), cel mai recent lastmod acum 0 zile (prag 30)"
+  },
+  {
+   "id": "disc.llms_txt",
+   "layer": "Discovery",
+   "sev": "MAJOR",
+   "pass": "200, markdown, link-uri modele / oferte / dealeri (+ URL MCP dacă AAP)",
+   "status": "pass",
+   "evidence": "llms.txt 700 B, titlu H1, 7 link-uri, conține URL-ul MCP din Agent Card"
+  },
+  {
+   "id": "disc.no_js",
+   "layer": "Discovery",
+   "sev": "HIGH",
+   "pass": "preț de la + specs + listă dealeri în HTML brut",
+   "status": "pass",
+   "evidence": "prețuri găsite în HTML brut: ['29.900', '33.900'] · raport text brut/randat 1.0"
+  },
+  {
+   "id": "disc.perf",
+   "layer": "Discovery",
+   "sev": "MINOR",
+   "pass": "TTFB < 800 ms, pagină < 3 MB",
+   "status": "pass",
+   "evidence": "TTFB 4 ms (local), pagină 31.0 KB"
+  },
+  {
+   "id": "disc.wellknown",
+   "layer": "Discovery",
+   "sev": "INFO",
+   "pass": "—",
+   "status": "pass",
+   "evidence": "api-catalog RFC 9727 cu linkset"
+  },
+  {
+   "id": "id.schema_org",
+   "layer": "Identity",
+   "sev": "HIGH",
+   "pass": "name, logo, url, sameAs, brand",
+   "status": "pass",
+   "evidence": "Organization: name, logo, url, sameAs, brand"
+  },
+  {
+   "id": "id.official",
+   "layer": "Identity",
+   "sev": "MAJOR",
+   "pass": "importatorul și relația cu marca în țară declarate clar",
+   "status": "pass",
+   "evidence": "„importatorul oficial și exclusiv” în text"
+  },
+  {
+   "id": "id.contact",
+   "layer": "Identity",
+   "sev": "MAJOR",
+   "pass": "telefon / email / adresă sediu, în text + `contactPoint`",
+   "status": "pass",
+   "evidence": "contactPoint + telefon în text"
+  },
+  {
+   "id": "id.same_as",
+   "layer": "Identity",
+   "sev": "MINOR",
+   "pass": "social + site global al mărcii",
+   "status": "pass",
+   "evidence": "sameAs ≥ 2 profiluri"
+  },
+  {
+   "id": "id.lang",
+   "layer": "Identity",
+   "sev": "MINOR",
+   "pass": "`lang` corect RO/ES; hreflang dacă e multilingv",
+   "status": "pass",
+   "evidence": "lang=\"ro\" + hreflang ro/es"
+  },
+  {
+   "id": "mod.urls",
+   "layer": "Data",
+   "sev": "HIGH",
+   "pass": "URL unic, crawlabil, per model",
+   "status": "pass",
+   "evidence": "2 pagini model legate"
+  },
+  {
+   "id": "mod.schema_model",
+   "layer": "Data",
+   "sev": "HIGH",
+   "pass": "pe ≥ 80% pagini model",
+   "status": "pass",
+   "evidence": "2 modele cu Car"
+  },
+  {
+   "id": "mod.schema_offer",
+   "layer": "Data",
+   "sev": "HIGH",
+   "pass": "AggregateOffer `lowPrice` / Offer + `validThrough`",
+   "status": "pass",
+   "evidence": "AggregateOffer lowPrice + validThrough"
+  },
+  {
+   "id": "mod.fields",
+   "layer": "Data",
+   "sev": "HIGH",
+   "pass": "preț de la, motorizări, combustibil, putere, consum/CO₂ WLTP, autonomie EV, garanție ≥ 80%",
+   "status": "pass",
+   "evidence": "preț de la, motorizări, putere, WLTP, autonomie EV, garanție"
+  },
+  {
+   "id": "mod.price_readable",
+   "layer": "Data",
+   "sev": "CRITICAL",
+   "pass": "în text, nu doar în bannere / imagini",
+   "status": "pass",
+   "evidence": "preț de la în text pentru toate modelele"
+  },
+  {
+   "id": "mod.price_final",
+   "layer": "Data",
+   "sev": "MAJOR",
+   "pass": "cu TVA, fără finanțare obligatorie; condiții în text",
+   "status": "pass",
+   "evidence": "TVA inclus + independent de finanțare"
+  },
+  {
+   "id": "net.locator",
+   "layer": "Data",
+   "sev": "CRITICAL",
+   "pass": "listă dealeri în HTML / JSON (nume, oraș, adresă, telefon), **nu doar hartă JS**",
+   "status": "pass",
+   "evidence": "3 dealeri în tabel HTML cu oraș, adresă, telefon"
+  },
+  {
+   "id": "net.schema_dealers",
+   "layer": "Data",
+   "sev": "MAJOR",
+   "pass": "listă AutoDealer cu adrese + geo",
+   "status": "pass",
+   "evidence": "3 AutoDealer cu adresă + geo"
+  },
+  {
+   "id": "net.links",
+   "layer": "Data",
+   "sev": "MINOR",
+   "pass": "prezente, valide (200)",
+   "status": "pass",
+   "evidence": "link-uri https către toți dealerii"
+  },
+  {
+   "id": "act.test_drive_route",
+   "layer": "Actions",
+   "sev": "HIGH",
+   "pass": "accesibil, rutează spre dealer, fără CAPTCHA blocant",
+   "status": "pass",
+   "evidence": "selecție dealer în formular, fără CAPTCHA"
+  },
+  {
+   "id": "act.locator_search",
+   "layer": "Actions",
+   "sev": "MAJOR",
+   "pass": "după oraș / cod poștal prin URL GET",
+   "status": "pass",
+   "evidence": "căutare dealer GET după oraș / cod poștal"
+  },
+  {
+   "id": "act.forms_semantic",
+   "layer": "Actions",
+   "sev": "MAJOR",
+   "pass": "`label`, `name`, `autocomplete`, câmpuri obligatorii marcate",
+   "status": "pass",
+   "evidence": "2 formulare, 8 câmpuri · probleme: []"
+  },
+  {
+   "id": "act.webmcp",
+   "layer": "Actions",
+   "sev": "INFO",
+   "pass": "`find_dealer`, `get_model`, `book_test_drive`",
+   "status": "pass",
+   "evidence": "tool-uri WebMCP declarate: ['find_dealer', 'get_model', 'book_test_drive'] · lipsă: []"
+  },
+  {
+   "id": "trust.https",
+   "layer": "Trust",
+   "sev": "HIGH",
+   "pass": "certificat valid, redirect HTTP → HTTPS",
+   "status": "pass",
+   "evidence": "TLS verificat (certificat de test, CA local) + HSTS"
+  },
+  {
+   "id": "trust.cookie_wall",
+   "layer": "Trust",
+   "sev": "MAJOR",
+   "pass": "conținut accesibil fără interacțiune",
+   "status": "pass",
+   "evidence": "elemente modale/overlay: 0"
+  },
+  {
+   "id": "trust.injection",
+   "layer": "Trust",
+   "sev": "MAJOR",
+   "pass": "fără text ascuns cu instrucțiuni pentru agenți",
+   "status": "pass",
+   "evidence": "text ascuns: 0 fragmente · tipare de injection: 0"
+  },
+  {
+   "id": "trust.gdpr",
+   "layer": "Trust",
+   "sev": "MAJOR",
+   "pass": "text de consimțământ + link politică",
+   "status": "pass",
+   "evidence": "1 formulare cu date personale, toate cu checkbox obligatoriu + link politică"
+  },
+  {
+   "id": "trust.offer_validity",
+   "layer": "Trust",
+   "sev": "MAJOR",
+   "pass": "perioadă de valabilitate + condiții în text și `validThrough`",
+   "status": "pass",
+   "evidence": "validThrough + perioadă în text"
+  },
+  {
+   "id": "ux.j_dealer",
+   "layer": "Agent UX",
+   "sev": "CRITICAL",
+   "pass": "dealer corect + contact",
+   "status": "pass",
+   "evidence": "pași: / → /dealeri?city=Cluj-Napoca · răspuns: ('AutoNova Cluj', '+40264000100') · ground truth: ('AutoNova Cluj', '+40264000100')"
+  },
+  {
+   "id": "ux.j_price",
+   "layer": "Agent UX",
+   "sev": "HIGH",
+   "pass": "corect vs ground truth",
+   "status": "pass",
+   "evidence": "pași: / → /modele/terra · răspuns: ('29.900 €', '5 ani / 150.000 km') · ground truth: ('29.900 €', '5 ani / 150.000 km')"
+  },
+  {
+   "id": "ux.j_compare",
+   "layer": "Agent UX",
+   "sev": "MAJOR",
+   "pass": "diferențe reale, din site",
+   "status": "pass",
+   "evidence": "pași: /modele/terra · răspuns: + cameră 360°, scaune ventilate, jante 19\" · ground truth: + cameră 360°, scaune ventilate, jante 19\""
+  },
+  {
+   "id": "ux.j_act",
+   "layer": "Agent UX",
+   "sev": "HIGH",
+   "pass": "formular găsit, câmpuri listate",
+   "status": "pass",
+   "evidence": "pași: /test-drive → STOP înainte de submit · răspuns: ['consent', 'dealer_id', 'email', 'model', 'name', 'phone'] · ground truth: ['consent', 'dealer_id', 'email', 'model', 'name', 'phone']"
+  },
+  {
+   "id": "ux.blockers",
+   "layer": "Agent UX",
+   "sev": "MAJOR",
+   "pass": "0 popup / CAPTCHA / 403 / conținut doar JS",
+   "status": "pass",
+   "evidence": "0 CAPTCHA, 0 overlay, 0 răspunsuri 403 pentru UA de agent"
+  },
+  {
+   "id": "ux.agent_vs_human",
+   "layer": "Agent UX",
+   "sev": "MAJOR",
+   "pass": "≥ 90% din informația vizibilă extrasă",
+   "status": "pass",
+   "evidence": "agentul primește același HTML ca omul (fără conținut injectat prin JS, fără prețuri în imagini): 100% din text"
+  },
+  {
+   "id": "proto.aap_card",
+   "layer": "Protocol",
+   "sev": "CRITICAL",
+   "pass": "`/.well-known/agent-card.json` valid; exact o extensie AAP `required: true`",
+   "status": "pass",
+   "evidence": "agent-card.json valid pe schema AAP v3.0"
+  },
+  {
+   "id": "proto.aap_version",
+   "layer": "Protocol",
+   "sev": "MAJOR",
+   "pass": "3.0 pass · 1.x–2.x warn",
+   "status": "pass",
+   "evidence": "params.version = 3.0.0"
+  },
+  {
+   "id": "proto.consistency",
+   "layer": "Protocol",
+   "sev": "MAJOR",
+   "pass": "aceleași skill-uri, același MCP",
+   "status": "pass",
+   "evidence": "skill-uri extensie = skill-uri card (4); același URL MCP în card, poppy, llms.txt"
+  },
+  {
+   "id": "proto.mcp",
+   "layer": "Protocol",
+   "sev": "CRITICAL",
+   "pass": "`server/discover` sau `initialize` OK",
+   "status": "pass",
+   "evidence": "MCP din params.mcp.url: initialize (2025-11-25) OK, server/discover (2026-07-28) OK"
+  },
+  {
+   "id": "proto.tools",
+   "layer": "Protocol",
+   "sev": "CRITICAL",
+   "pass": "`aap_*` din `tools/list` = skill-urile din card",
+   "status": "pass",
+   "evidence": "tools/list = ['aap_dealer_information', 'aap_inventory_facets', 'aap_inventory_search', 'aap_inventory_vehicle']"
+  },
+  {
+   "id": "proto.aap_aggregate",
+   "layer": "Protocol",
+   "sev": "HIGH",
+   "pass": "`dealer.information` + `inventory.search` cu `scope: aggregate`",
+   "status": "pass",
+   "evidence": "scope aggregate + dealer.information valid"
+  },
+  {
+   "id": "proto.search",
+   "layer": "Protocol",
+   "sev": "HIGH",
+   "pass": "`aap_inventory_search` anonim valid",
+   "status": "pass",
+   "evidence": "căutare anonimă validă pe schemă; 2 listări cu status, updated_at, VIN"
+  },
+  {
+   "id": "proto.onboarding",
+   "layer": "Protocol",
+   "sev": "MAJOR",
+   "pass": "domeniu → prima căutare < 60 s",
+   "status": "pass",
+   "evidence": "domeniu → agent-card → MCP → tools/list → căutare în 13 ms"
+  },
+  {
+   "id": "proto.network_adoption",
+   "layer": "Protocol",
+   "sev": "INFO",
+   "pass": "% dealeri din locator cu `agent-card.json`",
+   "status": "pass",
+   "evidence": "3 dealeri în rețea; adopția se măsoară prin GET pe agent-card.json-ul fiecăruia (domenii fictive în fixture)"
+  },
+  {
+   "id": "proto.eu_profile",
+   "layer": "Protocol",
+   "sev": "INFO",
+   "pass": "EUR/RON, TVA inclus, km/WLTP, GDPR",
+   "status": "pass",
+   "evidence": "extensie aap-eu: EUR, TVA inclus, km/WLTP, GDPR"
+  },
+  {
+   "id": "proto.ucp",
+   "layer": "Protocol",
+   "sev": "INFO",
+   "pass": "`/.well-known/ucp`",
+   "status": "pass",
+   "evidence": "/.well-known/ucp prezent"
+  }
+ ],
+ "critical_fail": []
+}

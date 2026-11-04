@@ -1,0 +1,38 @@
+{
+ "type": "dealer",
+ "confidence": 0.9,
+ "facts": {
+  "is_automotive_related": true,
+  "is_financial_institution": false,
+  "is_manufacturer_or_official_importer": false,
+  "hosts_third_party_listings": false,
+  "owns_vehicle_stock": true,
+  "sells_auto_parts_online": false
+ },
+ "model_type": "dealer",
+ "secondary_types": [],
+ "brands": [
+  "Hyundai",
+  "Mitsubishi",
+  "Geely"
+ ],
+ "locations": 1,
+ "evidence": [
+  {
+   "signal": "title",
+   "value": "Title identifies AutoDel as second-hand and made-to-order cars dealer"
+  },
+  {
+   "signal": "navigation",
+   "value": "Navigation lists Masini disponibile with 30+ makes plus Dealer Hyundai Suceava, Dealer Mitsubishi, Dealer Geely"
+  },
+  {
+   "signal": "sample_urls_from_sitemap",
+   "value": "Per-vehicle /anunt/ URLs for Mercedes CLS and Cupra Formentor plus /anunturi listings"
+  },
+  {
+   "signal": "km_mentions",
+   "value": "9 mileage mentions e.g. 51315 km and 213100 km with per-item prices marked In stoc"
+  }
+ ]
+}
